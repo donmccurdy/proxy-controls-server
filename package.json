@@ -1,0 +1,46 @@
+{
+  "name": "proxy-controls-server",
+  "version": "0.0.0",
+  "description": "Service to proxy keyboard/gamepad controls between devices, peer-to-peer, over WebRTC.",
+  "main": "app.js",
+  "scripts": {
+    "test": "karma start ./tests/karma.conf.js",
+    "dev-client": "budo client/index.js --dir client --port 8000 --live --open",
+    "dev-server": "echo 'dev-server not implemented'; exit 1;",
+    "preversion": "karma start ./tests/karma.conf.js --single-run",
+    "version": "npm run dist && git add -A dist",
+    "postversion": "git push && git push --tags && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donmccurdy/proxy-controls-server.git"
+  },
+  "keywords": [
+    "vr",
+    "webvr",
+    "webrtc",
+    "gamepad",
+    "keyboard",
+    "aframe",
+    "aframe-vr",
+    "mozvr"
+  ],
+  "author": "Don McCurdy <dm@donmccurdy.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/donmccurdy/proxy-controls-server/issues"
+  },
+  "homepage": "https://github.com/donmccurdy/proxy-controls-server#readme",
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "budo": "^7.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^1.2.0",
+    "express": "^4.10.2",
+    "keyboardevent-key-polyfill": "^1.0.1",
+    "socket.io": "^1.4.2",
+    "socket.io-client": "^1.4.2",
+    "socket.io-p2p-server": "^1.2.0"
+  }
+}

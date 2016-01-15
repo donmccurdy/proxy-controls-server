@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Proxy Controls • Client</title>
+  </head>
+  <body>
+    <h1>Proxy Controls</h1>
+    <h2>Client</h2>
+
+    <input type="text" placeholder="Client ID" data-bind="connect-id">
+    <p>Paste client ID and press <i>Enter</i> to connect.</p>
+
+    <script src="https://aframe.io/releases/latest/aframe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
+    <script src="../bundle.js"></script>
+    <script>
+      var client = new ProxyControlsClient();
+      document.querySelector('[data-bind=connect-id]')
+        .addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') {
+            client.connect(this.value);
+          }
+        });
+    </script>
+  </body>
+</html>
