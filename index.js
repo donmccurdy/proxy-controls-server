@@ -1,6 +1,4 @@
-var dotenv = require('dotenv'),
-    WebServer = require('./server/webserver');
-
-dotenv.load();
-
-new WebServer({ port: process.env.PORT || 3000 }); // jshint ignore:line
+var WebServer = require('./server/webserver');
+new WebServer({
+  port: process.env.npm_package_config_server_port || process.env.PORT
+});

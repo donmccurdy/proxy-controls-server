@@ -3,9 +3,14 @@
   "version": "0.0.0",
   "description": "Service to proxy keyboard/gamepad controls between devices, peer-to-peer, over WebRTC.",
   "main": "app.js",
+  "config": {
+    "host": "localhost",
+    "client_port": 3000,
+    "server_port": 3001
+  },
   "scripts": {
     "test": "karma start ./tests/karma.conf.js",
-    "dev-client": "budo client/index.js:bundle.js --dir client --port 8000 --live --open",
+    "dev-client": "budo client/index.js:bundle.js --dir client --port $npm_package_config_client_port --live --open -- -t envify",
     "dev-server": "node index.js",
     "preversion": "karma start ./tests/karma.conf.js --single-run",
     "version": "npm run dist && git add -A dist",
@@ -33,7 +38,8 @@
   "homepage": "https://github.com/donmccurdy/proxy-controls-server#readme",
   "devDependencies": {
     "browserify": "^12.0.1",
-    "budo": "^7.1.0"
+    "budo": "^7.1.0",
+    "envify": "^3.4.0"
   },
   "dependencies": {
     "bufferutil": "^1.2.1",
