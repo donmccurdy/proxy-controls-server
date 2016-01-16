@@ -11,7 +11,7 @@
   "scripts": {
     "test": "karma start ./tests/karma.conf.js",
     "dev-client": "budo client/index.js:bundle.js --dir client --port $npm_package_config_client_port --live --open -- -t envify",
-    "dev-server": "node index.js",
+    "dev-server": "nodemon index.js",
     "preversion": "karma start ./tests/karma.conf.js --single-run",
     "version": "npm run dist && git add -A dist",
     "postversion": "git push && git push --tags && npm publish"
@@ -39,7 +39,8 @@
   "devDependencies": {
     "browserify": "^12.0.1",
     "budo": "^7.1.0",
-    "envify": "^3.4.0"
+    "envify": "^3.4.0",
+    "nodemon": "^1.8.1"
   },
   "dependencies": {
     "bufferutil": "^1.2.1",
