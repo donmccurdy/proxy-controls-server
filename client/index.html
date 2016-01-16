@@ -8,18 +8,10 @@
     <h1>Proxy Controls</h1>
     <h2>Client</h2>
 
-    <input type="text" placeholder="Client ID" data-bind="connect-id">
-    <p>Paste client ID and press <i>Enter</i> to connect.</p>
+    <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
+
+    <p>(Pretty UI coming soon).</p>
 
     <script src="bundle.js"></script>
-    <script>
-      var client = new ProxyControlsClient();
-      document.querySelector('[data-bind=connect-id]')
-        .addEventListener('keydown', function (e) {
-          if (e.key === 'Enter') {
-            client.connect(this.value);
-          }
-        });
-    </script>
   </body>
 </html>
