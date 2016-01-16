@@ -43,14 +43,8 @@
     "nodemon": "^1.8.1"
   },
   "dependencies": {
-    "bufferutil": "^1.2.1",
     "dotenv": "^1.2.0",
-    "express": "^4.10.2",
     "keyboardevent-key-polyfill": "^1.0.1",
-    "socket.io": "^1.4.2",
-    "socket.io-client": "^1.4.2",
-    "socket.io-p2p": "^2.2.0",
-    "socket.io-p2p-server": "^1.2.0",
-    "utf-8-validate": "^1.2.1"
+    "socketpeer": "^1.0.2"
   }
 }

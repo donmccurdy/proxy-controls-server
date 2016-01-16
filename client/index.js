@@ -1,7 +1,6 @@
 require('keyboardevent-key-polyfill').polyfill();
 
-var P2P = require('socket.io-p2p'),
-    io = require('socket.io-client'),
+var SocketPeer = require('socketpeer'),
     EventEmitter = require('events'),
     util = require('util');
 
@@ -11,11 +10,13 @@ var ProxyControlsClient = function () {
   var host = process.env.npm_package_config_host,
       port = process.env.npm_package_config_server_port;
 
-  /** @type {IO} Socket.IO socket. */
-  this.socket = io(host + ':' + port);
-
-  /** @type {P2P} Socket.IO P2P instance. */
-  this.p2p = new P2P(this.socket);
+  /** @type {SocketPeer} WebRTC connection. */
+  this.peer = new SocketPeer({
+    pairCode: 'my-room',
+    socketFallback: true,
+    url: 'http://' + host + ':' + port + '/socketpeer/',
+    autoconnect: false
+  });
 
   this.init();
 };
@@ -23,34 +24,41 @@ var ProxyControlsClient = function () {
 util.inherits(ProxyControlsClient, EventEmitter);
 
 /**
- * Initializes PeerJS connection with broker server, and begins listening for
- * client connections.
+ * Initializes SocketPeer connection with broker server, and begins listening
+ * for client connections.
  */
 ProxyControlsClient.prototype.init = function () {
-  console.log('init');
-  this.p2p.on('ready', function(){
-    console.log('ready');
-    this.p2p.usePeerConnection = true;
-    this.p2p.emit('msg', { peerId: 'it me' });
-  }.bind(this));
-  this.p2p.on('msg', console.info.bind(console, 'p2p:msg(%s)'));
-};
+  var self = this;
+  var peer = this.peer;
 
-/**
- * Connect to remote application by PeerJS ID.
- * @param  {string} id
- */
-ProxyControlsClient.prototype.connect = function (id) {
-  console.log('wat');
-  // this.conn = this.peer.connect(id);
-  // this.conn.on('open', function () {
-  //  console.info('peer:open(%s)', id);
-  //  this.bindKeyboardEvents();
-  //  this.bindGamepadEvents();
-  //  this.emit('open', {id: id});
-  // }.bind(this));
-  // this.conn.on('data', console.log.bind(console, 'peer:data(%s)'));
-  // this.conn.on('error', console.error.bind(console, 'peer:error(%s)'));
+  console.log('init');
+  peer.on('connect', function () {
+    console.info('connect()');
+    self.bindKeyboardEvents();
+    self.bindGamepadEvents();
+  });
+  peer.on('upgrade', function () {
+    console.info('upgrade()');
+    peer.send({hello: 'world'});
+  });
+  peer.on('connect_error', function () {
+    console.error('connect_error()');
+  });
+  peer.on('connect_timeout', function () {
+    console.warn('connect_timeout()');
+  });
+  peer.on('data', function (data) {
+    console.log('data()');
+    console.info(data);
+  });
+  peer.on('close', function () {
+    console.info('close()');
+  });
+  peer.on('error', function () {
+    console.error('error()');
+  });
+
+  peer.connect();
 };
 
 /**
@@ -60,7 +68,7 @@ ProxyControlsClient.prototype.bindKeyboardEvents = function () {
   var keys = {};
 
   var publish = function () {
-    this.conn.send({type: 'keyboard', state: Object.keys(keys)});
+    this.peer.send({type: 'keyboard', state: Object.keys(keys)});
   }.bind(this);
 
   document.addEventListener('keydown', function (e) {
@@ -89,7 +97,7 @@ ProxyControlsClient.prototype.bindGamepadEvents = function () {
       }
     }
     if (gamepads.length) {
-      this.conn.send({type: 'gamepad', state: gamepads});
+      this.peer.send({type: 'gamepad', state: gamepads});
     }
     window.requestAnimationFrame(publish);
   }.bind(this);
