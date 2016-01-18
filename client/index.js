@@ -39,7 +39,6 @@ ProxyControlsClient.prototype.init = function () {
   });
   peer.on('upgrade', function () {
     console.info('upgrade()');
-    peer.send({hello: 'world'});
   });
   peer.on('connect_error', function () {
     console.error('connect_error()');
@@ -68,7 +67,7 @@ ProxyControlsClient.prototype.bindKeyboardEvents = function () {
   var keys = {};
 
   var publish = function () {
-    this.peer.send({type: 'keyboard', state: Object.keys(keys)});
+    this.peer.send({type: 'keyboard', state: keys});
   }.bind(this);
 
   document.addEventListener('keydown', function (e) {

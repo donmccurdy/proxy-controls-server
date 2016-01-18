@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "karma start ./tests/karma.conf.js",
-    "dev-client": "budo client/index.js:bundle.js --dir client --port $npm_package_config_client_port --live --open -- -t envify",
+    "dev-client": "budo client/index.js:bundle.js --dir client --port $npm_package_config_client_port --host $npm_package_config_host --live --open -- -t envify",
     "dev-server": "nodemon index.js",
     "preversion": "karma start ./tests/karma.conf.js --single-run",
     "version": "npm run dist && git add -A dist",
