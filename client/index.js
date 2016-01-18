@@ -18,6 +18,12 @@ var ProxyControlsClient = function () {
     autoconnect: false
   });
 
+  /** @type {string:function} Listeners bound to document events. */
+  this.listeners = {};
+
+  /** @type {string:boolean} Keyboard state, [key]->true. */
+  this.keys = {};
+
   this.init();
 };
 
@@ -51,6 +57,7 @@ ProxyControlsClient.prototype.init = function () {
     console.info(data);
   });
   peer.on('close', function () {
+    this.unbindKeyboardEvents();
     console.info('close()');
   });
   peer.on('error', function () {
@@ -60,28 +67,51 @@ ProxyControlsClient.prototype.init = function () {
   peer.connect();
 };
 
+/*******************************************************************
+* Keyboard events
+*/
+
 /**
  * Binds keyboard events to shared datachannel.
  */
 ProxyControlsClient.prototype.bindKeyboardEvents = function () {
-  var keys = {};
+  this.listeners.keydown = this.onKeydown.bind(this);
+  this.listeners.keyup = this.onKeyup.bind(this);
 
-  var publish = function () {
-    this.peer.send({type: 'keyboard', state: keys});
-  }.bind(this);
-
-  document.addEventListener('keydown', function (e) {
-    if (keys[e.key]) return;
-    keys[e.key] = true;
-    publish();
-  });
-
-  document.addEventListener('keyup', function (e) {
-    if (!keys[e.key]) return;
-    delete keys[e.key];
-    publish();
-  });
+  document.addEventListener('keydown', this.listeners.keydown);
+  document.addEventListener('keyup', this.listeners.keyup);
 };
+
+ProxyControlsClient.prototype.unbindKeyboardEvents = function () {
+  if (this.listeners.keydown) {
+    document.removeEventListener('keydown', this.listeners.keydown);
+    delete this.listeners.keydown;
+  }
+  if (this.listeners.keyup) {
+    document.removeEventListener('keyup', this.listeners.keyup);
+    delete this.listeners.keyup;
+  }
+};
+
+ProxyControlsClient.prototype.publishKeyboardEvents = function () {
+  this.peer.send({type: 'keyboard', state: this.keys});
+};
+
+ProxyControlsClient.prototype.onKeydown = function (e) {
+  if (this.keys[e.key]) return;
+  this.keys[e.key] = true;
+  this.publishKeyboardEvents();
+};
+
+ProxyControlsClient.prototype.onKeyup = function (e) {
+    if (!this.keys[e.key]) return;
+    delete this.keys[e.key];
+    this.publishKeyboardEvents();
+};
+
+/*******************************************************************
+* Gamepad events
+*/
 
 /**
  * Binds Gamepad events to shared datachannel. 
