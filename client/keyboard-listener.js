@@ -8,6 +8,8 @@ function KeyboardListener () {
 
   this.title = 'Keyboard Controls';
   this.type = 'keyboard';
+  this.component = 'keyboard-controls';
+  this.github = 'https://github.com/donmccurdy/aframe-keyboard-controls';
 
   this.keys = {};
 }

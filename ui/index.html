@@ -47,6 +47,7 @@
           <li ng-repeat="listener in listeners">
             {{ listener.title }}
             <ul>
+              <li>A-Frame component: <a href="{{ listener.github }}" target="_blank">{{ listener.component }}</a></li>
               <li>Event type: <code>{{ listener.type }}</code></li>
               <li ng-if="listener.enabled">Status: <span style="color: green">Enabled</span></li>
               <li ng-if="!listener.enabled">Status: <span style="color: crimson">Disabled</span></li>

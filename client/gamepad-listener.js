@@ -6,6 +6,8 @@ function GamepadListener () {
 
   this.title = 'Gamepad Controls';
   this.type = 'gamepad';
+  this.component = 'gamepad-controls';
+  this.github = 'https://github.com/donmccurdy/aframe-gamepad-controls';
 }
 
 util.inherits(GamepadListener, Listener);
