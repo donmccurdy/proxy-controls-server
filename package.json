@@ -13,9 +13,7 @@
     "test": "karma start ./tests/karma.conf.js",
     "dev-client": "budo ui/src/app.js:bundle.js --dir ui --port $npm_package_config_client_port --host $npm_package_config_host --live --open -- -t envify",
     "dev-server": "nodemon index.js",
-    "preversion": "karma start ./tests/karma.conf.js --single-run",
-    "version": "npm run dist && git add -A dist",
-    "postversion": "git push && git push --tags && npm publish"
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
