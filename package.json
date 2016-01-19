@@ -1,6 +1,6 @@
 {
   "name": "proxy-controls-server",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Service to proxy keyboard/gamepad controls between devices, peer-to-peer, over WebRTC.",
   "main": "server/proxy-controls-server.js",
   "browser": "client/index.js",
