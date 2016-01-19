@@ -33,7 +33,7 @@
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
+  <div class="container" ng-app="proxyControlsApp" ng-controller="MainCtrl">
     <div class="row">
       <div class="one-half column" style="margin-top: 25%">
         <h4>Proxy Controls • Client</h4>
@@ -42,7 +42,17 @@
     </div>
     <div class="row">
       <div class="column">
-        <p>More content.</p>
+        <h5>Listeners</h5>
+        <ul>
+          <li ng-repeat="listener in listeners">
+            {{ listener.title }}
+            <ul>
+              <li>Event type: {{ listener.type }}</li>
+              <li ng-if="listener.enabled">Status: <span style="color: green">Enabled</span></li>
+              <li ng-if="!listener.enabled">Status: <span style="color: crimson">Disabled</span></li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

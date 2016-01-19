@@ -1,6 +1,14 @@
-var ProxyControlsClient = require('../../client/proxy-controls-client');
+var angular = require('angular');
 
-var host = process.env.npm_package_config_host,
-    port = process.env.npm_package_config_server_port;
+angular.module('proxyControlsApp', [
+    require('angular-route'),
+    require('angular-sanitize'),
+    require('angular-touch')
+  ])
+  .constant('SERVER', {
+    HOST: process.env.npm_package_config_host,
+    PORT: process.env.npm_package_config_server_port
+  });
 
-new ProxyControlsClient('http://' + host + ':' + port + '/socketpeer/');
+require('./controllers');
+require('./services');

@@ -40,10 +40,14 @@ ProxyControlsClient.prototype.initConnection = function () {
   peer.on('connect', function () {
     console.info('connect()');
     this.listeners.forEach(function (listener) { listener.bind(); });
+    this.emit('connect');
   }.bind(this));
   peer.on('connect_error', function () { console.error('connect_error()'); });
   peer.on('connect_timeout', function () { console.warn('connect_timeout()'); });
-  peer.on('upgrade', function () { console.info('upgrade()'); });
+  peer.on('upgrade', function () {
+    console.info('upgrade()');
+    this.emit('upgrade');
+  }.bind(this));
   peer.on('error', function () { console.error('error()'); });
   peer.on('data', function (data) {
     console.log('data(%s)', JSON.stringify(data, null, 2));
@@ -51,6 +55,7 @@ ProxyControlsClient.prototype.initConnection = function () {
   peer.on('close', function () {
     this.listeners.forEach(function (listener) { listener.unbind(); });
     console.info('close()');
+    this.emit('close');
   }.bind(this));
 };
 
