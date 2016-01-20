@@ -2,12 +2,25 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .module {
-  border: 1px solid #555;
+  border: 1px solid #888;
   border-radius: 4px;
   padding: 1.2rem;
 }
 
+  .module + .module { margin-top: 1rem; }
   .module:last-child { margin-bottom: 2rem; }
+
+.module ul,
+.module li:last-child {
+  margin-bottom: 0;
+}
+
+.module .button {
+  height: 30px;
+  line-height: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
 
 /* Toggles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

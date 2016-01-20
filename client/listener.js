@@ -14,14 +14,17 @@ function Listener () {
   this.type = '';
 
   /** @type {boolean} Enabled/disabled state. */
-  this.enabled = false;
+  this.enabled = true;
 }
 
 util.inherits(Listener, EventEmitter);
 
-Listener.prototype.bind = function () {
-  this.enabled = true;
+Listener.prototype.emit = function () {
+  if (!this.enabled) return;
+  EventEmitter.prototype.emit.apply(this, arguments);
 };
+
+Listener.prototype.bind = function () {};
 
 Listener.prototype.unbind = function () {
   for (var event in this.__listeners) {
@@ -30,7 +33,14 @@ Listener.prototype.unbind = function () {
     }
   }
   this.__listeners = {};
-  this.enabled = false;
+};
+
+Listener.prototype.isEnabled = function () {
+  return this.enabled;
+};
+
+Listener.prototype.setEnabled = function (enabled) {
+  this.enabled = !!enabled;
 };
 
 module.exports = Listener;
