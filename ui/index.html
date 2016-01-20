@@ -34,23 +34,59 @@
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container" ng-app="proxyControlsApp" ng-controller="MainCtrl">
+
+
+    <!-- Introduction
+    ––––––––––––––––––––– -->
     <div class="row">
-      <div class="one-half column" style="margin-top: 25%">
-        <h4>Proxy Controls • Client</h4>
+      <div class="column" style="margin-top: 5em">
+        <h1>Proxy Controls • Client</h1>
         <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
       </div>
     </div>
+
+    <!-- Status
+    ––––––––––––––––––––– -->
     <div class="row">
       <div class="column">
-        <h5>Listeners</h5>
+        <h3>Connection Status</h3>
+        <div class="module">
+          <div>
+            Status:
+            <span class="toggle" ng-class="{green: server.connected, red: !server.connected}">
+              {{ server.connected ? 'Connected' : 'Disconnected' }}
+            </span>
+          </div>
+          <div>
+            Protocol:
+            <span class="toggle" ng-class="{green: server.protocol === 'rtc',
+                                            yellow: server.protocol === 'socket',
+                                            red: !server.protocol}">
+              {{ server.protocol ? protocolLabels[server.protocol] : 'Disconnected' }}
+            </span>
+          </div>
+          <div>Latency: &hellip;ms</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Listeners
+    ––––––––––––––––––––– -->
+    <div class="row">
+      <div class="column">
+        <h3>Listeners</h3>
         <ul>
           <li ng-repeat="listener in listeners">
             {{ listener.title }}
             <ul>
               <li>A-Frame component: <a href="{{ listener.github }}" target="_blank">{{ listener.component }}</a></li>
               <li>Event type: <code>{{ listener.type }}</code></li>
-              <li ng-if="listener.enabled">Status: <span style="color: green">Enabled</span></li>
-              <li ng-if="!listener.enabled">Status: <span style="color: crimson">Disabled</span></li>
+              <li>
+                Status:
+                <span class="toggle" ng-class="{green: listener.enabled, red: !listener.enabled}">
+                  {{ listener.enabled ? 'Enabled' : 'Disabled' }}
+                </span>
+              </li>
             </ul>
           </li>
         </ul>

@@ -1,14 +1,23 @@
-module.exports = function ($scope, $timeout, ProxyService) {
+var INTERVAL = 1000;
 
-  $scope.listeners = ProxyService.listeners;
+module.exports = function ($scope, $interval, ProxyService) {
+  $scope.server = {};
+  $scope.listeners = [];
+  $scope.protocolLabels = {
+    rtc: 'WebRTC',
+    socket: 'WebSocket'
+  };
 
-  function update () {
-    $timeout(function () {
-      $scope.listeners = ProxyService.listeners;
-    });
-  }
+  // Poll for changes, because events emitted by proxy service and underlying
+  // SocketPeer object aren't enough to indicate when server connection status
+  // has changed.
+  var intervalPromise = $interval(function () {
+    $scope.server.connected = ProxyService.isServerConnected();
+    $scope.server.protocol = ProxyService.getProtocol();
+    $scope.listeners = ProxyService.listeners;
+  }, INTERVAL);
 
-  ProxyService.on('connect', update);
-  ProxyService.on('upgrade', update);
-  ProxyService.on('close', update);
+  $scope.$on('$destroy', function () {
+    $interval.cancel(intervalPromise);
+  });
 };
