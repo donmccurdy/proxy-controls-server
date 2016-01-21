@@ -59,17 +59,20 @@
               </span>
             </li>
             <li>
-              Remote Device: <code>_____</code>
+              Remote Device:
+              <span class="toggle" ng-class="{green: peer.connected, red: !peer.connected}">
+                {{ peer.connected ? 'Connected' : 'Disconnected' }}
+              </span>
             </li>
             <li>
               Protocol:
-              <span class="toggle" ng-class="{green: server.protocol === 'rtc',
-                                              yellow: server.protocol === 'socket',
-                                              red: !server.protocol}">
-                {{ server.protocol ? protocolLabels[server.protocol] : 'Disconnected' }}
+              <span class="toggle" ng-class="{green: peer.protocol === 'rtc',
+                                              yellow: peer.protocol === 'socket',
+                                              red: !peer.protocol}">
+                {{ peer.protocol ? protocolLabels[peer.protocol] : 'Disconnected' }}
               </span>
             </li>
-            <li>Latency: <code>_____</code>ms</li>
+            <li>Latency: {{ peer.latency || '∞' }}ms</li>
           </ul>
         </div>
       </div>

@@ -4,6 +4,9 @@ var SocketPeer = require('socketpeer'),
     KeyboardListener = require('./keyboard-listener'),
     GamepadListener = require('./gamepad-listener');
 
+var LATENCY_POLLING_BUFFER_SIZE = 5,
+    LATENCY_POLLING_INTERVAL = 1000;
+
 var ProxyControlsClient = function (url) {
   EventEmitter.call(this);
 
@@ -23,6 +26,9 @@ var ProxyControlsClient = function (url) {
   /** @type {string:boolean} Keyboard state, [key]->true. */
   this.keys = {};
 
+  /** @type {Array<number>} Circular array of recent latency measurements. */
+  this.recentLatency = [];
+
   this.initConnection();
   this.initListeners();
 };
@@ -39,6 +45,7 @@ ProxyControlsClient.prototype.initConnection = function () {
   console.log('init');
   peer.on('connect', function () {
     console.info('connect()');
+    this.initLatencyPolling();
     this.listeners.forEach(function (listener) { listener.bind(); });
   }.bind(this));
   peer.on('connect_error', function () { console.error('connect_error()'); });
@@ -51,6 +58,22 @@ ProxyControlsClient.prototype.initConnection = function () {
   peer.on('close', function () {
     this.listeners.forEach(function (listener) { listener.unbind(); });
     console.info('close()');
+  }.bind(this));
+};
+
+ProxyControlsClient.prototype.initLatencyPolling = function () {
+  var index = 0;
+
+  // Ping remote peer at regular intervals.
+  setInterval(function () {
+    this.peer.send({type: 'ping', timestamp: Date.now()});
+  }.bind(this), LATENCY_POLLING_INTERVAL);
+
+  // Record round trip time, as an estimate of 2*latency.
+  this.peer.on('data', function (event) {
+    if (event.type !== 'ping') return;
+    this.recentLatency[index] = (Date.now() - event.timestamp) / 2;
+    index = (index + 1) % LATENCY_POLLING_BUFFER_SIZE;
   }.bind(this));
 };
 
@@ -76,13 +99,22 @@ ProxyControlsClient.prototype.isPeerConnected = function () {
   return this.peer.rtcConnected || this.peer.socketConnected;
 };
 
-ProxyControlsClient.prototype.getProtocol = function () {
+ProxyControlsClient.prototype.getPeerProtocol = function () {
   if (this.peer.rtcConnected) {
     return 'rtc';
   } else if (this.peer.socketConnected) {
     return 'socket';
   }
   return null;
+};
+
+ProxyControlsClient.prototype.getPeerLatency = function () {
+  if (!this.recentLatency.length) return NaN;
+  var avgLatency = 0;
+  for (var i = 0; i < this.recentLatency.length; i++) {
+    avgLatency += this.recentLatency[i];
+  }
+  return Math.round(avgLatency / this.recentLatency.length);
 };
 
 module.exports = ProxyControlsClient;
