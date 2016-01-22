@@ -4,7 +4,7 @@ var Listener = require('./Listener'),
 function GamepadListener () {
   Listener.call(this);
 
-  this.title = 'Gamepad Controls';
+  this.title = 'Gamepad';
   this.type = 'gamepad';
   this.component = 'gamepad-controls';
   this.github = 'https://github.com/donmccurdy/aframe-gamepad-controls';

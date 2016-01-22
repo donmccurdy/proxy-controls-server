@@ -6,7 +6,7 @@ require('keyboardevent-key-polyfill').polyfill();
 function KeyboardListener () {
   Listener.call(this);
 
-  this.title = 'Keyboard Controls';
+  this.title = 'Keyboard';
   this.type = 'keyboard';
   this.component = 'keyboard-controls';
   this.github = 'https://github.com/donmccurdy/aframe-keyboard-controls';
