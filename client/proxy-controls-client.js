@@ -50,6 +50,7 @@ ProxyControlsClient.prototype.initConnection = function () {
   }.bind(this));
   peer.on('connect_error', function () { console.error('connect_error()'); });
   peer.on('connect_timeout', function () { console.warn('connect_timeout()'); });
+  peer.on('disconnect', function () { console.info('disconnect()'); });
   peer.on('upgrade', function () { console.info('upgrade()'); });
   peer.on('error', function () { console.error('error()'); });
   peer.on('data', function (data) {
@@ -96,13 +97,13 @@ ProxyControlsClient.prototype.isServerConnected = function () {
 };
 
 ProxyControlsClient.prototype.isPeerConnected = function () {
-  return this.peer.rtcConnected || this.peer.socketConnected;
+  return this.peer.peerConnected;
 };
 
 ProxyControlsClient.prototype.getPeerProtocol = function () {
   if (this.peer.rtcConnected) {
     return 'rtc';
-  } else if (this.peer.socketConnected) {
+  } else if (this.peer.socketConnected && this.peer.peerConnected) {
     return 'socket';
   }
   return null;

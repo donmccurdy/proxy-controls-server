@@ -47,6 +47,6 @@
   },
   "dependencies": {
     "keyboardevent-key-polyfill": "^1.0.1",
-    "socketpeer": "^1.0.2"
+    "socketpeer": "donmccurdy/socketpeer#feat-emit-disconnect"
   }
 }
