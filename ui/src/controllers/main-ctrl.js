@@ -1,6 +1,8 @@
 var INTERVAL = 1000;
 
 module.exports = function ($scope, $interval, ProxyService) {
+  var proxyService = null;
+
   $scope.server = {};
   $scope.peer = {};
   $scope.listeners = [];
@@ -9,15 +11,25 @@ module.exports = function ($scope, $interval, ProxyService) {
     socket: 'WebSocket'
   };
 
+  $scope.connect = function (pairCode) {
+    if (proxyService) {
+      // TODO disconnect and create a new instance.
+      throw new Error('Reconnect not yet supported');
+    } else if (pairCode) {
+      proxyService = ProxyService.get(pairCode);
+    }
+  };
+
   // Poll for changes, because events emitted by proxy service and underlying
   // SocketPeer object aren't enough to indicate when server connection status
   // has changed.
   var intervalPromise = $interval(function () {
-    $scope.server.connected = ProxyService.isServerConnected();
-    $scope.peer.protocol = ProxyService.getPeerProtocol();
-    $scope.peer.connected = ProxyService.isPeerConnected();
-    $scope.peer.latency = ProxyService.getPeerLatency();
-    $scope.listeners = ProxyService.listeners;
+    if (!proxyService) return;
+    $scope.server.connected = proxyService.isServerConnected();
+    $scope.peer.protocol = proxyService.getPeerProtocol();
+    $scope.peer.connected = proxyService.isPeerConnected();
+    $scope.peer.latency = proxyService.getPeerLatency();
+    $scope.listeners = proxyService.listeners;
   }, INTERVAL);
 
   $scope.$on('$destroy', function () {

@@ -35,68 +35,80 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container" ng-app="proxyControlsApp" ng-controller="MainCtrl">
 
-
     <!-- Introduction
     ––––––––––––––––––––– -->
+    <h1 style="margin-top: 5rem">Proxy Controls • Client</h1>
     <div class="row">
-      <div class="column" style="margin-top: 5em">
-        <h1>Proxy Controls • Client</h1>
-        <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
+      <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
+    </div>
+
+    <h3>Get Started</h3>
+    <div class="row">
+      <div class="eight columns">
+        <label for="pair-code">Pair Code</label>
+        <input id="pair-code"
+               class="u-full-width"
+               type="text"
+               placeholder="wordy-word"
+               ng-model="pairCode"
+               ng-pattern="/^[a-zA-Z]+\-[a-zA-Z]+$/">
+      </div>
+      <div class="four columns">
+        <label class="drop-label">&nbsp;</label>
+        <button class="button button-primary u-full-width"
+                ng-click="connect(pairCode)">Connect</button>
       </div>
     </div>
 
     <!-- Status
     ––––––––––––––––––––– -->
     <div class="row">
-      <div class="column">
-        <h3>Connection Status</h3>
-        <div class="module">
-          <ul>
-            <li>
-              Server Status:
-              <span class="toggle" ng-class="{green: server.connected, red: !server.connected}">
-                {{ server.connected ? 'Connected' : 'Disconnected' }}
-              </span>
-            </li>
-            <li>
-              Remote Device:
-              <span class="toggle" ng-class="{green: peer.connected, red: !peer.connected}">
-                {{ peer.connected ? 'Connected' : 'Disconnected' }}
-              </span>
-            </li>
-            <li>
-              Protocol:
-              <span class="toggle" ng-class="{green: peer.protocol === 'rtc',
-                                              yellow: peer.protocol === 'socket',
-                                              red: !peer.protocol}">
-                {{ peer.protocol ? protocolLabels[peer.protocol] : 'Disconnected' }}
-              </span>
-            </li>
-            <li>Latency: {{ peer.latency || '∞' }}ms</li>
-          </ul>
-        </div>
+      <h3>Connection Status</h3>
+      <div class="module">
+        <ul>
+          <li>
+            Server Status:
+            <span class="toggle" ng-class="{green: server.connected, red: !server.connected}">
+              {{ server.connected ? 'Connected' : 'Disconnected' }}
+            </span>
+          </li>
+          <li>
+            Remote Device:
+            <span class="toggle" ng-class="{green: peer.connected, red: !peer.connected}">
+              {{ peer.connected ? 'Connected' : 'Disconnected' }}
+            </span>
+          </li>
+          <li>
+            Protocol:
+            <span class="toggle" ng-class="{green: peer.protocol === 'rtc',
+                                            yellow: peer.protocol === 'socket',
+                                            red: !peer.protocol}">
+              {{ peer.protocol ? protocolLabels[peer.protocol] : 'Disconnected' }}
+            </span>
+          </li>
+          <li>Latency: {{ peer.latency || '∞' }}ms</li>
+        </ul>
       </div>
     </div>
 
     <!-- Listeners
     ––––––––––––––––––––– -->
-    <div class="row">
-      <div class="column">
-        <h3>Listeners</h3>
-        <div class="module" ng-repeat="listener in listeners">
-          <button class="button u-pull-right"
-                  ng-class="{ 'button-primary': !listener.isEnabled() }"
-                  ng-click="listener.setEnabled(!listener.isEnabled())">
-            {{ listener.isEnabled() ? 'Disable' : 'Enable' }}
-          </button>
-          <h5>{{ listener.title }}</h5>
-          <ul>
-            <li>A-Frame component: <a href="{{ listener.github }}" target="_blank">{{ listener.component }}</a></li>
-            <li>Event type: <code>{{ listener.type }}</code></li>
-          </ul>
-        </div class="module">
+    <div class="row" ng-if="listeners.length">
+      <h3>Listeners</h3>
+      <div class="module" ng-repeat="listener in listeners">
+        <button class="button u-pull-right"
+                ng-class="{ 'button-primary': !listener.isEnabled() }"
+                ng-click="listener.setEnabled(!listener.isEnabled())">
+          {{ listener.isEnabled() ? 'Disable' : 'Enable' }}
+        </button>
+        <h5>{{ listener.title }}</h5>
+        <ul>
+          <li>A-Frame component: <a href="{{ listener.github }}" target="_blank">{{ listener.component }}</a></li>
+          <li>Event type: <code>{{ listener.type }}</code></li>
+        </ul>
       </div>
     </div>
+
   </div>
 
   <!-- Bootstrap

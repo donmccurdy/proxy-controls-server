@@ -7,14 +7,24 @@ var SocketPeer = require('socketpeer'),
 var LATENCY_POLLING_BUFFER_SIZE = 5,
     LATENCY_POLLING_INTERVAL = 1000;
 
-var ProxyControlsClient = function (url) {
+/**
+ * UI controller for client running on host machine. Records user input and
+ * forwards events to remote client / viewer application.
+ *
+ * Options:
+ * - url: (required) URL of ProxyControlsServer instance.
+ * - pairCode: (required) Identifier for this client. 
+ * 
+ * @param {Object} options Client configuration.
+ */
+var ProxyControlsClient = function (options) {
   EventEmitter.call(this);
 
   /** @type {SocketPeer} WebRTC connection. */
   this.peer = new SocketPeer({
-    pairCode: 'my-room',
+    url: options.url,
+    pairCode: options.pairCode,
     socketFallback: true,
-    url: url
   });
 
   /** @type {string:Listener} Listeners bound to document events. */
