@@ -47,6 +47,9 @@
   },
   "dependencies": {
     "keyboardevent-key-polyfill": "^1.0.1",
+    "koa": "^1.1.2",
+    "koa-route": "^2.4.2",
+    "moniker": "^0.1.2",
     "socketpeer": "^1.0.2"
   }
 }
