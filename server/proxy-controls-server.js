@@ -1,5 +1,6 @@
 'use strict';
 var koa = require('koa'),
+    cors = require('koa-cors'),
     route = require('koa-route'),
     SocketPeerServer = require('socketpeer'),
     moniker = require('moniker');
@@ -19,6 +20,7 @@ function ProxyControlsServer (options) {
 
   /** @type {Koa} Koa application, to serve client UI and AJAX endpoints. */
   this.app = koa()
+    .use(cors({origin: true}))
     .use(route.get('/ajax/nearby', this.routeNearby()))
     .use(route.get('/ajax/pair-code', this.routePairCode()));
 
