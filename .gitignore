@@ -1,4 +1,5 @@
 node_modules/
 bower_components/
+**/bundle.js
 .DS_Store
 .gh-pages

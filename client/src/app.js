@@ -7,7 +7,7 @@ angular.module('proxyControlsApp', [
   ])
   .constant('SERVER', {
     HOST: process.env.npm_package_config_host,
-    PORT: process.env.npm_package_config_server_port
+    PORT: process.env.npm_package_config_port
   });
 
 require('./controllers');

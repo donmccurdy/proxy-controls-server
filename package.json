@@ -6,13 +6,14 @@
   "browser": "client/index.js",
   "config": {
     "host": "localhost",
-    "client_port": 3000,
-    "server_port": 3001
+    "port": 3000
   },
   "scripts": {
+    "start": "npm run prod",
     "test": "karma start ./tests/karma.conf.js",
-    "dev-client": "budo ui/src/app.js:bundle.js --dir ui --port $npm_package_config_client_port --host $npm_package_config_host --live --open -- -t envify",
-    "dev-server": "nodemon index.js",
+    "build": "browserify -t envify client/src/app.js -o client/bundle.js",
+    "prod": "npm run build && node index.js",
+    "dev": "watchify -t envify client/src/app.js -o client/bundle.js & nodemon index.js",
     "postversion": "git push && git push --tags"
   },
   "repository": {
@@ -41,15 +42,16 @@
     "angular-sanitize": "^1.4.8",
     "angular-touch": "^1.4.8",
     "browserify": "^12.0.1",
-    "budo": "^7.1.0",
     "envify": "^3.4.0",
-    "nodemon": "^1.8.1"
+    "nodemon": "^1.8.1",
+    "watchify": "^3.7.0"
   },
   "dependencies": {
     "keyboardevent-key-polyfill": "^1.0.1",
     "koa": "^1.1.2",
     "koa-cors": "0.0.16",
     "koa-route": "^2.4.2",
+    "koa-static": "^2.0.0",
     "moniker": "^0.1.2",
     "socketpeer": "^1.0.2"
   }

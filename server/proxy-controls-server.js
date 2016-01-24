@@ -2,6 +2,7 @@
 var koa = require('koa'),
     cors = require('koa-cors'),
     route = require('koa-route'),
+    resources = require('koa-static'),
     SocketPeerServer = require('socketpeer'),
     moniker = require('moniker');
 
@@ -21,6 +22,7 @@ function ProxyControlsServer (options) {
   /** @type {Koa} Koa application, to serve client UI and AJAX endpoints. */
   this.app = koa()
     .use(cors({origin: true}))
+    .use(resources('client'))
     .use(route.get('/ajax/nearby', this.routeNearby()))
     .use(route.get('/ajax/pair-code', this.routePairCode()));
 

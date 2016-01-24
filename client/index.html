@@ -42,19 +42,17 @@
       <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
     </div>
 
-    <h3>Get Started</h3>
-    <div class="row">
+    <h3 ng-if="!server.connected">Get Started</h3>
+    <div ng-if="!server.connected" class="row">
       <div class="eight columns">
-        <label for="pair-code">Pair Code</label>
-        <input id="pair-code"
+        <input type="text"
+               placeholder="pair-code"
                class="u-full-width"
-               type="text"
-               placeholder="wordy-word"
                ng-model="pairCode"
-               ng-pattern="/^[a-zA-Z]+\-[a-zA-Z]+$/">
+               ng-pattern="/^[a-zA-Z]+\-[a-zA-Z]+$/"
+               ng-keyup="$event.keyCode == 13 && connect(pairCode)">
       </div>
       <div class="four columns">
-        <label class="drop-label">&nbsp;</label>
         <button class="button button-primary u-full-width"
                 ng-click="connect(pairCode)">Connect</button>
       </div>
@@ -63,7 +61,7 @@
     <!-- Status
     ––––––––––––––––––––– -->
     <div class="row">
-      <h3>Connection Status</h3>
+      <h3>Connection</h3>
       <div class="module">
         <ul>
           <li>
@@ -94,7 +92,7 @@
     <!-- Listeners
     ––––––––––––––––––––– -->
     <div class="row" ng-if="listeners.length">
-      <h3>Listeners</h3>
+      <h3>Input Devices</h3>
       <div class="module" ng-repeat="listener in listeners">
         <button class="button u-pull-right"
                 ng-class="{ 'button-primary': !listener.isEnabled() }"
