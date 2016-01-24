@@ -3,7 +3,10 @@
   "version": "0.0.1",
   "description": "Service to proxy keyboard/gamepad controls between devices, peer-to-peer, over WebRTC.",
   "main": "server/proxy-controls-server.js",
-  "browser": "client/index.js",
+  "browser": "client/src/lib/proxy-controls-client.js",
+  "engines": {
+    "node": "5.4.0"
+  },
   "config": {
     "host": "localhost",
     "port": 3000
@@ -11,8 +14,7 @@
   "scripts": {
     "start": "npm run prod",
     "test": "karma start ./tests/karma.conf.js",
-    "build": "browserify -t envify client/src/app.js -o client/bundle.js",
-    "prod": "npm run build && node index.js",
+    "prod": "browserify client/src/app.js -o client/bundle.js && node index.js",
     "dev": "watchify -t envify client/src/app.js -o client/bundle.js & nodemon index.js",
     "postversion": "git push && git push --tags"
   },
@@ -37,16 +39,16 @@
   },
   "homepage": "https://github.com/donmccurdy/proxy-controls-server#readme",
   "devDependencies": {
-    "angular": "^1.4.8",
-    "angular-route": "^1.4.8",
-    "angular-sanitize": "^1.4.8",
-    "angular-touch": "^1.4.8",
-    "browserify": "^12.0.1",
     "envify": "^3.4.0",
     "nodemon": "^1.8.1",
     "watchify": "^3.7.0"
   },
   "dependencies": {
+    "angular": "^1.4.8",
+    "angular-route": "^1.4.8",
+    "angular-sanitize": "^1.4.8",
+    "angular-touch": "^1.4.8",
+    "browserify": "^12.0.1",
     "keyboardevent-key-polyfill": "^1.0.1",
     "koa": "^1.1.2",
     "koa-cors": "0.0.16",

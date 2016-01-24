@@ -1,4 +1,4 @@
-var Listener = require('./Listener'),
+var Listener = require('./listener'),
     util = require('util');
 
 function GamepadListener () {
