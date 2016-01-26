@@ -14,7 +14,8 @@
   "scripts": {
     "start": "npm run prod",
     "test": "karma start ./tests/karma.conf.js",
-    "prod": "browserify client/src/app.js -o client/bundle.js && gzip -f client/bundle.js && node index.js",
+    "build": "browserify client/src/app.js -o client/bundle.js && gzip -f client/bundle.js ",
+    "prod": "npm run build && node index.js",
     "dev": "watchify -t envify client/src/app.js -o client/bundle.js -d & nodemon index.js",
     "postversion": "git push && git push --tags"
   },
