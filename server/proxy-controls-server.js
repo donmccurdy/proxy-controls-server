@@ -31,11 +31,11 @@ function ProxyControlsServer (options) {
     assert(options.cert, 'cert required for SSL.');
     
     this.app.use(forceSSL());
-    http.createServer(this.app.callback()).listen(process.env.HTTP_PORT);
+    http.createServer(this.app.callback()).listen(options.port);
     this.server = https.createServer({
       key: options.key,
       cert: options.cert
-    }, this.app.callback()).listen(process.env.HTTPS_PORT);
+    }, this.app.callback()).listen(options.sslPort);
   } else {
     this.server = this.app.listen(options.port);
   }
