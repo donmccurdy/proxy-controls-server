@@ -49,6 +49,7 @@
     "angular-sanitize": "^1.4.8",
     "angular-touch": "^1.4.8",
     "browserify": "^12.0.1",
+    "bufferutil": "^1.2.1",
     "dotenv": "^2.0.0",
     "keyboardevent-key-polyfill": "^1.0.1",
     "koa": "^1.1.2",
@@ -57,6 +58,7 @@
     "koa-route": "^2.4.2",
     "koa-static": "^2.0.0",
     "moniker": "^0.1.2",
-    "socketpeer": "^1.0.2"
+    "socketpeer": "^1.0.2",
+    "utf-8-validate": "^1.2.1"
   }
 }
