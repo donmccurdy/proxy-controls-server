@@ -3,8 +3,9 @@ var fs = require('fs'),
     dotenv = require('dotenv'),
     ProxyControlsServer = require('./server/proxy-controls-server');
 
+dotenv.config({silent: true});
+
 if (process.env.NODE_ENV === 'production') {
-  dotenv.load();
   new ProxyControlsServer({
     port: process.env.PORT,
     sslPort: process.env.SSL_PORT,
