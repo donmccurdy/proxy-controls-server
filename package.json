@@ -8,15 +8,14 @@
     "node": "5.4.0"
   },
   "config": {
-    "host": "localhost",
     "port": 3000
   },
   "scripts": {
     "start": "npm run prod",
     "test": "karma start ./tests/karma.conf.js",
-    "build": "browserify -t envify client/src/app.js -o client/bundle.js && gzip -f client/bundle.js ",
+    "build": "browserify client/src/app.js -o client/bundle.js && gzip -f client/bundle.js ",
     "prod": "npm run build && node index.js",
-    "dev": "watchify -t [ envify --PUBLIC_HOST $npm_package_config_host --PUBLIC_PORT $npm_package_config_port ] client/src/app.js -o client/bundle.js -d & nodemon index.js",
+    "dev": "watchify client/src/app.js -o client/bundle.js -d & nodemon index.js",
     "postversion": "git push && git push --tags"
   },
   "repository": {

@@ -1,10 +1,9 @@
 var ProxyControlsClient = require('../lib/proxy-controls-client');
 
 module.exports = function (SERVER) {
-  var url = 'http://' + SERVER.HOST + ':' + SERVER.PORT + '/socketpeer/';
   return {
     get: function (pairCode) {
-      return new ProxyControlsClient({url: url, pairCode: pairCode});
+      return new ProxyControlsClient({url: SERVER.SOCKET_PATH, pairCode: pairCode});
     }
   };
 };

@@ -6,8 +6,7 @@ angular.module('proxyControlsApp', [
     require('angular-touch')
   ])
   .constant('SERVER', {
-    HOST: process.env.PUBLIC_HOST,
-    PORT: process.env.PUBLIC_PORT
+    SOCKET_PATH: location.protocol + '//' + location.host + '/socketpeer/'
   });
 
 require('./controllers');
