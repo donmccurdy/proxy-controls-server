@@ -14,7 +14,8 @@ util.inherits(GamepadListener, Listener);
 
 GamepadListener.prototype.bind = function () {
   // TODO - implement unbind()
-  if (this.enabled) return; 
+  if (this.__bound) return; 
+  this.__bound = true;
 
   Listener.prototype.bind.call(this);
 
