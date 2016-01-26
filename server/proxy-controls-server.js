@@ -1,8 +1,11 @@
-'use strict';
-var koa = require('koa'),
+var assert = require('assert'),
+    http = require('http'),
+    https = require('https'),
+    koa = require('koa'),
     cors = require('koa-cors'),
     route = require('koa-route'),
     resources = require('koa-static'),
+    forceSSL = require('koa-force-ssl'),
     SocketPeerServer = require('socketpeer'),
     moniker = require('moniker');
 
@@ -17,25 +20,39 @@ var koa = require('koa'),
  * @param {Object} options Server configuration options.
  */
 function ProxyControlsServer (options) {
-  this.options = {port: options.port};
-
   /** @type {Koa} Koa application, to serve client UI and AJAX endpoints. */
-  this.app = koa()
+  this.app = koa();
+
+  /** @type {http.Server} Server, to support both Koa and SocketPeerServer. */
+  this.server = null;
+
+  if (options.sslPort) {
+    assert(options.key, 'key required for SSL.');
+    assert(options.cert, 'cert required for SSL.');
+    
+    this.app.use(forceSSL());
+    http.createServer(this.app.callback()).listen(process.env.HTTP_PORT);
+    this.server = https.createServer({
+      key: options.key,
+      cert: options.cert
+    }, this.app.callback()).listen(process.env.HTTPS_PORT);
+  } else {
+    this.server = this.app.listen(options.port);
+  }
+
+  this.app
     .use(cors({origin: true}))
     .use(resources('client'))
     .use(route.get('/ajax/nearby', this.routeNearby()))
     .use(route.get('/ajax/pair-code', this.routePairCode()));
 
-  /** @type {http.Server} Server, to support both Koa and SocketPeerServer. */
-  this.httpServer = this.app.listen(this.options.port);
-
   /** @type {SocketPeerServer} WebSocket / WebRTC connection broker. */
   this.socketServer = new SocketPeerServer({
-    httpServer: this.httpServer,
+    httpServer: this.server,
     serveLibrary: false
   });
 
-  console.info('ProxyControlsServer listening on port %d.', this.options.port);
+  console.info('ProxyControlsServer listening on port %d.', options.sslPort || options.port);
 }
 
 /**
