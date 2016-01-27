@@ -63,13 +63,18 @@ header nav {
 
 .nav-link {
   display: inline-block;
+  float: left;
+  height: 60px;
+  box-sizing: border-box;
   padding: 0 1em;
   font-size: 1.8rem;
   font-weight: 300;
   color: #FFF;
   text-decoration: none;
 }
-  
+
+  .nav-link.active { border-bottom: 5px solid #33C3F0; }
+
   .nav-link:hover {
     color: #FFF;
     background: #444;

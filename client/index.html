@@ -33,30 +33,28 @@
   <script src="bundle.js"></script>
 
 </head>
-<body>
+<body ng-app="proxyControlsApp">
 
   <!-- Header
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <header class="row">
+  <header class="row" ng-controller="NavCtrl">
     <div class="container">
       <h4>
         <a class="logo" href="/#/">ProxyControls<span style="font-weight: 100;">.js</span></a>
         <span class="version">Beta</span>
       </h4>
       <nav class="u-pull-right">
-        <a class="nav-link" href="/#/">Home</a>
-        <a class="nav-link" href="/#/start">Start</a>
-        <a class="nav-link" href="/#/docs">Docs</a>
+        <a class="nav-link" href="/#/" ng-class="{active: isActive('/')}">Home</a>
+        <a class="nav-link" href="/#/start" ng-class="{active: isActive('/start')}">Start</a>
+        <a class="nav-link" href="/#/docs" ng-class="{active: isActive('/docs')}">Docs</a>
       </nav>
     </div>
   </header>
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container" ng-app="proxyControlsApp">
-
+  <div class="container">
     <div ng-view></div>
-
   </div>
 
 <!-- End Document

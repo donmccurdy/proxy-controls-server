@@ -1,3 +1,5 @@
 var app = require('angular').module('proxyControlsApp');
 
-app.controller('StartCtrl', require('./start-ctrl'));
+app
+	.controller('NavCtrl', require('./nav-ctrl'))
+	.controller('StartCtrl', require('./start-ctrl'));
