@@ -31,6 +31,15 @@ header nav {
   text-decoration: none;
 }
 
+.version {
+  font-size: 0.4em;
+  font-weight: 600;
+  text-transform: uppercase;
+  position: relative;
+  bottom: 1em;
+  color: #1EAEDB;
+}
+
 .nav-link {
   display: inline-block;
   padding: 0 1em;

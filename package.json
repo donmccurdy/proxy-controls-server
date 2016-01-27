@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Service to proxy keyboard/gamepad controls between devices, peer-to-peer, over WebRTC.",
   "main": "server/proxy-controls-server.js",
-  "browser": "client/src/lib/proxy-controls-client.js",
+  "browser": "client/lib/proxy-controls-client.js",
   "engines": {
     "node": "5.4.0"
   },
@@ -13,9 +13,9 @@
   "scripts": {
     "start": "npm run prod",
     "test": "karma start ./tests/karma.conf.js",
-    "build": "browserify client/src/app.js -o client/bundle.js && gzip -f client/bundle.js ",
+    "build": "browserify client/app.js -o client/bundle.js && gzip -f client/bundle.js ",
     "prod": "npm run build && node index.js",
-    "dev": "watchify client/src/app.js -o client/bundle.js -d & nodemon index.js",
+    "dev": "watchify client/app.js -o client/bundle.js -d & nodemon index.js",
     "postversion": "git push && git push --tags"
   },
   "repository": {

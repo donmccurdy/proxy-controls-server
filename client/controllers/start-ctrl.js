@@ -34,5 +34,7 @@ module.exports = function ($scope, $interval, ProxyService) {
 
   $scope.$on('$destroy', function () {
     $interval.cancel(intervalPromise);
+
+    // TODO cancel connection if open
   });
 };

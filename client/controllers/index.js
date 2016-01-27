@@ -1,3 +1,3 @@
 var app = require('angular').module('proxyControlsApp');
 
-app.controller('MainCtrl', require('./main-ctrl'));
+app.controller('StartCtrl', require('./start-ctrl'));

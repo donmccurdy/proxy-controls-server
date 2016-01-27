@@ -40,91 +40,22 @@
   <header class="row">
     <div class="container">
       <h4>
-        <a class="logo" href="/">ProxyControls<span style="font-weight: 100;">.js</span></a>
+        <a class="logo" href="/#/">ProxyControls<span style="font-weight: 100;">.js</span></a>
+        <span class="version">Beta</span>
       </h4>
       <nav class="u-pull-right">
-        <a class="nav-link" href="/">Home</a>
-        <a class="nav-link" href="/demo">Demo</a>
-        <a class="nav-link" href="/docs">Docs</a>
+        <a class="nav-link" href="/#/">Home</a>
+        <a class="nav-link" href="/#/start">Start</a>
+        <a class="nav-link" href="/#/docs">Docs</a>
       </nav>
     </div>
   </header>
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container" ng-app="proxyControlsApp" ng-controller="MainCtrl">
+  <div class="container" ng-app="proxyControlsApp">
 
-    <!-- Introduction
-    ––––––––––––––––––––– -->
-    <div ng-if="!server.connected">
-      <h3>Get Started</h3>
-      <div class="row">
-        <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
-      </div>
-      <div class="row">
-        <div class="eight columns">
-          <input type="text"
-                 placeholder="pair-code"
-                 class="u-full-width"
-                 ng-model="pairCode"
-                 ng-pattern="/^[a-zA-Z]+\-[a-zA-Z]+$/"
-                 ng-keyup="$event.keyCode == 13 && connect(pairCode)">
-        </div>
-        <div class="four columns">
-          <button class="button button-primary u-full-width"
-                  ng-click="connect(pairCode)">Connect</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Status
-    ––––––––––––––––––––– -->
-    <div class="row">
-      <h3>Connection</h3>
-      <div class="module">
-        <ul>
-          <li>
-            Server Status:
-            <span class="toggle" ng-class="{green: server.connected, red: !server.connected}">
-              {{ server.connected ? 'Connected' : 'Disconnected' }}
-            </span>
-          </li>
-          <li>
-            Remote Device:
-            <span class="toggle" ng-class="{green: peer.connected, red: !peer.connected}">
-              {{ peer.connected ? 'Connected' : 'Disconnected' }}
-            </span>
-          </li>
-          <li>
-            Protocol:
-            <span class="toggle" ng-class="{green: peer.protocol === 'rtc',
-                                            yellow: peer.protocol === 'socket',
-                                            red: !peer.protocol}">
-              {{ peer.protocol ? protocolLabels[peer.protocol] : 'Disconnected' }}
-            </span>
-          </li>
-          <li>Latency: {{ peer.latency || '∞' }}ms</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Listeners
-    ––––––––––––––––––––– -->
-    <div class="row" ng-if="listeners.length">
-      <h3>Input Devices</h3>
-      <div class="module" ng-repeat="listener in listeners">
-        <button class="button u-pull-right"
-                ng-class="{ 'button-primary': !listener.isEnabled() }"
-                ng-click="listener.setEnabled(!listener.isEnabled())">
-          {{ listener.isEnabled() ? 'Disable' : 'Enable' }}
-        </button>
-        <h5>{{ listener.title }}</h5>
-        <ul>
-          <li>A-Frame component: <a href="{{ listener.github }}" target="_blank">{{ listener.component }}</a></li>
-          <li>Event type: <code>{{ listener.type }}</code></li>
-        </ul>
-      </div>
-    </div>
+    <div ng-view></div>
 
   </div>
 
