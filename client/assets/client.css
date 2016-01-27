@@ -4,10 +4,31 @@
 /* Page layout
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+body {
+  overflow-y: scroll;
+}
+
+.container { max-width: 850px; }
 body > .container { margin-top: 2rem; }
 @media screen and (min-width: 750px) {
   body > .container { margin-top: 4rem; }
 }
+
+/* Typography
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+h1 { font-size: 5.0rem; }
+h2 { font-size: 3.6rem; }
+h3 { font-size: 3.0rem; }
+h4 { font-size: 2.4rem; }
+body { font-size: 1.8rem; }
+
+p { font-weight: 300; line-height: 1.7em; }
+
+a { text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+.caps { font-size: 1.5rem; font-weight: 400; }
 
 /* Header
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -49,7 +70,11 @@ header nav {
   text-decoration: none;
 }
   
-  .nav-link:hover { color: #FFF; background: #444 }
+  .nav-link:hover {
+    color: #FFF;
+    background: #444;
+    text-decoration: none;
+  }
 
 
 /* Getting Started
