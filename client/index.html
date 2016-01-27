@@ -16,7 +16,7 @@
 
   <!-- Font
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,100,600" rel="stylesheet" type="text/css">
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -35,33 +35,45 @@
 </head>
 <body>
 
+  <!-- Header
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <header class="row">
+    <div class="container">
+      <h4>
+        <a class="logo" href="/">ProxyControls<span style="font-weight: 100;">.js</span></a>
+      </h4>
+      <nav class="u-pull-right">
+        <a class="nav-link" href="/">Home</a>
+        <a class="nav-link" href="/demo">Demo</a>
+        <a class="nav-link" href="/docs">Docs</a>
+      </nav>
+    </div>
+  </header>
+
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="container" ng-app="proxyControlsApp" ng-controller="MainCtrl">
 
     <!-- Introduction
     ––––––––––––––––––––– -->
-    <h1>
-      Proxy Controls • Client
-      <span class="version">Alpha</span>
-    </h1>
-    <div class="row">
-      <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
-    </div>
-
-    <h3 ng-if="!server.connected">Get Started</h3>
-    <div ng-if="!server.connected" class="row">
-      <div class="eight columns">
-        <input type="text"
-               placeholder="pair-code"
-               class="u-full-width"
-               ng-model="pairCode"
-               ng-pattern="/^[a-zA-Z]+\-[a-zA-Z]+$/"
-               ng-keyup="$event.keyCode == 13 && connect(pairCode)">
+    <div ng-if="!server.connected">
+      <h3>Get Started</h3>
+      <div class="row">
+        <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
       </div>
-      <div class="four columns">
-        <button class="button button-primary u-full-width"
-                ng-click="connect(pairCode)">Connect</button>
+      <div class="row">
+        <div class="eight columns">
+          <input type="text"
+                 placeholder="pair-code"
+                 class="u-full-width"
+                 ng-model="pairCode"
+                 ng-pattern="/^[a-zA-Z]+\-[a-zA-Z]+$/"
+                 ng-keyup="$event.keyCode == 13 && connect(pairCode)">
+        </div>
+        <div class="four columns">
+          <button class="button button-primary u-full-width"
+                  ng-click="connect(pairCode)">Connect</button>
+        </div>
       </div>
     </div>
 
