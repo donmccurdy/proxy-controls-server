@@ -2,72 +2,71 @@
 
   <h1>Docs</h1>
 
-  <h2>Overview</h2>
+  <section>
+    <h2>Overview</h2>
 
-  <p>
-    ProxyControls shares events from input devices (keyboard, gamepad, etc.)
-    with a remote device. While viewing a WebVR site on your phone with Google
-    Cardboard, you can use a USB gamepad &mdash; connected to your PC &mdash; to
-    move around.
-  </p>
+    <p>
+      ProxyControls shares events from input devices (keyboard, gamepad, etc.)
+      with a remote device. While viewing a WebVR site on your phone with Google
+      Cardboard, you can use a USB gamepad &mdash; connected to your PC &mdash; to
+      move around.
+    </p>
+  </section>
 
-  <h2>Host Device</h2>
+  <section>
+    <h2>Host Device</h2>
 
-  <p>
-    For your host (the machine connected directly to the input device), this
-    website is all you need. Open the <i>Start</i> tab to get going:
-  </p>
+    <p>
+      For your host (the machine connected directly to the input device), this
+      website is all you need:
+    </p>
 
-  <p><a href="/#/start">› Start (Connect as Host Device)</a></p>
+    <p>› <a href="/#/start">Start (Connect as Host Device)</a></p>
+  </section>
 
-  <p>
-    If you run into trouble, please
-    <a href="https://github.com/donmccurdy/proxy-controls-server/issues/new">open an issue on GitHub</a>
-    and let me know what’s happening, and how to reproduce the problem.
-  </p>
+  <section>
+    <h2>Remote Device + A-Frame</h2>
 
-  <h2>Remote Device + A-Frame</h2>
+    <p>
+      For your remote viewing device (such as a mobile phone), you’ll need to use a
+      <span class="caps">.JS</span> client to receive input events from the host
+      device.
+    </p>
 
-  <p>
-    For your remote viewing device (such as a mobile phone), you’ll need to use a
-    <span class="caps">.JS</span> client to receive input events from the host
-    device.
-  </p>
+    <ul>
+      <li><a href="https://github.com/donmccurdy/aframe-proxy-controls">A-Frame Proxy Controls Component</a></li>
+    </ul>
 
-  <ul>
-    <li><a href="https://github.com/donmccurdy/aframe-proxy-controls">A-Frame Proxy Controls Component</a></li>
-  </ul>
+    <p>
+      In addition to <i>receiving</i> events from the host, you’ll need a controls
+      component to <i>use</i> those events and manipulate the scene. There are
+      currently two official client packages, both designed for
+      <a target="_blank" href="https://aframe.io/">A-Frame</a> VR:
+    </p>
 
-  <p>
-    In addition to <i>receiving</i> events from the host, you’ll need a controls
-    component to <i>use</i> those events and manipulate the scene. There are
-    currently two official client packages, both designed for
-    <a target="_blank" href="https://aframe.io/">A-Frame</a> VR:
-  </p>
+    <ul>
+      <li>
+        <a href="https://github.com/donmccurdy/aframe-keyboard-controls">A-Frame Keyboard Controls</a>
+        <code>keyboard-controls</code>
+      </li>
+      <li>
+        <a href="https://github.com/donmccurdy/aframe-gamepad-controls">A-Frame Gamepad Controls</a>
+        <code>gamepad-controls</code>
+      </li>
+      <li>
+        A-Frame Leap Motion Controls
+        <code>leap-controls</code>
+        <i>(Coming soon)</i>
+      </li>
+      <li>&hellip;or build your own!</li>
+    </ul>
 
-  <ul>
-    <li>
-      <a href="https://github.com/donmccurdy/aframe-keyboard-controls">A-Frame Keyboard Controls</a>
-      <code>keyboard-controls</code>
-    </li>
-    <li>
-      <a href="https://github.com/donmccurdy/aframe-gamepad-controls">A-Frame Gamepad Controls</a>
-      <code>gamepad-controls</code>
-    </li>
-    <li>
-      A-Frame Leap Motion Controls
-      <code>leap-controls</code>
-      <i>(Coming soon)</i>
-    </li>
-    <li>&hellip;or build your own!</li>
-  </ul>
+    <p>
+      After installing <code>proxy-controls</code> and at least one input device
+      controller, use them in your scene:
+    </p>
 
-  <p>
-    After installing <code>proxy-controls</code> and at least one input device
-    controller, use them in your scene:
-  </p>
-
-  <pre><code>&lt;a-scene <b>proxy-controls</b>&gt;
+    <pre><code>&lt;a-scene <b>proxy-controls</b>&gt;
   &lt;a-cube&gt;&lt;/a-cube&gt;
   &lt;a-entity camera
             <b>gamepad-controls</b>
@@ -75,14 +74,17 @@
   &lt;/a-entity&gt;
 &lt;/a-scene&gt;
 </code></pre>
+  </section>
 
-  <h2>Remote Device, without A-Frame</h2>
+  <section>
+    <h2>Remote Device, without A-Frame</h2>
 
-  <p>
-    There’s no official pre-packaged support for ProxyControls outside of the
-    A-Frame environment yet. Feel free to build your own, or
-    <a href="https://github.com/donmccurdy/proxy-controls-server/issues/new">open an issue on GitHub</a>
-    if you’re interested in discussing an idea.
-  </p>
+    <p>
+      There’s no official pre-packaged support for ProxyControls outside of the
+      A-Frame environment yet. Feel free to build your own, or
+      <a href="https://github.com/donmccurdy/proxy-controls-server/issues/new">open an issue on GitHub</a>
+      if you’re interested in discussing an idea.
+    </p>
+  </section>
 
 </p>

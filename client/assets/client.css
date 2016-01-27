@@ -14,6 +14,10 @@ body > .container { margin-top: 2rem; }
   body > .container { margin-top: 4rem; }
 }
 
+section:not(:last-child) {
+  margin-bottom: 6rem;
+}
+
 /* Typography
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
