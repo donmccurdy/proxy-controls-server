@@ -5,7 +5,23 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 body {
+  min-height: 100vh;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   overflow-y: scroll;
+}
+
+.view-wrap {
+ -webkit-flex-grow: 1;
+ -moz-flex-grow: 1;
+ -ms-flex-grow: 1;
+ flex-grow: 1;
 }
 
 .container {
@@ -178,6 +194,34 @@ nav {
       background: #444;
     }
 
+}
+
+/* Footer
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+footer {
+  padding: 3rem 0;
+  font-size: 1.5rem;
+  background: #222222;
+  color: #bfbfbf;
+}
+
+.footer-links {
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.footer-link {
+  display: block;
+}
+
+.footer-desc p:last-child { margin-bottom: 0; }
+
+@media screen and (min-width: 550px) {
+  .footer-links {
+    margin-bottom: 0;
+    text-align: left;
+  }
 }
 
 /* Getting Started
