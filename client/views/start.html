@@ -27,32 +27,43 @@
 
   <!-- Status
   ––––––––––––––––––––– -->
+  <h2>Connection</h2>
   <div class="row">
-    <h2>Connection</h2>
-    <div class="module">
-      <ul>
-        <li>
-          Server Status:
-          <span class="toggle" ng-class="{green: server.connected, red: !server.connected}">
-            {{ server.connected ? 'Connected' : 'Disconnected' }}
-          </span>
-        </li>
-        <li>
-          Remote Device:
-          <span class="toggle" ng-class="{green: peer.connected, red: !peer.connected}">
-            {{ peer.connected ? 'Connected' : 'Disconnected' }}
-          </span>
-        </li>
-        <li>
-          Protocol:
-          <span class="toggle" ng-class="{green: peer.protocol === 'rtc',
-                                          yellow: peer.protocol === 'socket',
-                                          red: !peer.protocol}">
-            {{ peer.protocol ? protocolLabels[peer.protocol] : 'Disconnected' }}
-          </span>
-        </li>
-        <li>Latency: {{ peer.latency || '∞' }}ms</li>
-      </ul>
+    <div class="module u-full-width" style="max-width: 550px;">
+      <table class="u-full-width">
+        <tbody>
+          <tr>
+            <td>Server Status</td>
+            <td>
+              <span class="toggle" ng-class="{green: server.connected, red: !server.connected}">
+                {{ server.connected ? 'Connected' : 'Disconnected' }}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Remote Device</td>
+            <td>
+              <span class="toggle" ng-class="{green: peer.connected, red: !peer.connected}">
+                {{ peer.connected ? 'Connected' : 'Disconnected' }}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Protocol</td>
+            <td>
+              <span class="toggle" ng-class="{green: peer.protocol === 'rtc',
+                                              yellow: peer.protocol === 'socket',
+                                              red: !peer.protocol}">
+                {{ peer.protocol ? protocolLabels[peer.protocol] : 'Disconnected' }}
+              </span>
+            </td>
+          </tr>
+          <tr>
+            <td>Latency</td>
+            <td>{{ peer.latency || '∞' }}ms</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
