@@ -22,7 +22,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="assets/normalize.css">
   <link rel="stylesheet" href="assets/skeleton.css">
-  <link rel="stylesheet" href="assets/client.css">
+  <link rel="stylesheet" href="assets/app.css">
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -43,10 +43,17 @@
         <a class="logo" href="/#/">ProxyControls<span style="font-weight: 100;">.js</span></a>
         <span class="version">Beta</span>
       </h4>
-      <nav class="u-pull-right">
-        <a class="nav-link" href="/#/" ng-class="{active: isActive('/')}">Home</a>
-        <a class="nav-link" href="/#/start" ng-class="{active: isActive('/start')}">Start</a>
-        <a class="nav-link" href="/#/docs" ng-class="{active: isActive('/docs')}">Docs</a>
+      <div class="menu-btn" ng-click="navOpen = !navOpen" aria-label="Menu"></div>
+      <nav class="u-pull-right" ng-class="{ open: navOpen }">
+        <a href="/#/"
+           class="nav-link"
+           ng-class="{active: isActive('/')}">Home</a>
+        <a href="/#/start"
+           class="nav-link"
+           ng-class="{active: isActive('/start')}">Start</a>
+        <a href="/#/docs"
+           class="nav-link"
+           ng-class="{active: isActive('/docs')}">Docs</a>
       </nav>
     </div>
   </header>

@@ -8,10 +8,13 @@ body {
   overflow-y: scroll;
 }
 
-.container { max-width: 850px; }
-body > .container { margin-top: 2rem; }
+.container {
+  max-width: 850px; 
+}
+
+body > .container { margin-top: calc(60px + 2rem) }
 @media screen and (min-width: 750px) {
-  body > .container { margin-top: 4rem; }
+  body > .container { margin-top: calc(60px + 4rem); }
 }
 
 section:not(:last-child) {
@@ -38,9 +41,14 @@ a { text-decoration: none; }
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 header {
+  position: fixed;
+  
+  top: 0;
+  width: 100%;
   height: 60px;
   line-height: 60px;
   background: #222;
+  z-index: 1000;
 }
 
 header h4,
@@ -48,6 +56,10 @@ header nav {
   margin: 0;
   line-height: inherit;
   display: inline-block;
+}
+
+header > .container {
+  position: static;
 }
 
 .logo,
@@ -65,26 +77,108 @@ header nav {
   color: #1EAEDB;
 }
 
+/* Navigation
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.menu-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 60px;
+  padding: 0 30px;
+}
+
+.menu-btn:before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 22px;
+  width: 30px;
+  height: 0.12em;
+  background: #F0F0F0;
+  box-shadow:
+    0 0.35em 0 0 #F0F0F0,
+    0 0.7em 0 0 #F0F0F0;
+}
+
+nav {
+  position: absolute;
+  top: 60px;
+  right: -250px;
+  width: 250px;
+  height: calc(100vh - 60px);
+
+  -webkit-transition: right 0.2s ease;
+  -moz-transition: right 0.2s ease;
+  -ms-transition: right 0.2s ease;
+  transition: right 0.2s ease;
+
+  -webkit-backdrop-filter: blur(5px);
+  -moz-backdrop-filter: blur(5px);
+  -ms-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  background: rgba(40,40,40,0.95);
+}
+
+  nav.open { right: 0; }
+
 .nav-link {
-  display: inline-block;
-  float: left;
+  display: block;
   height: 60px;
   box-sizing: border-box;
+  border-left: 5px solid transparent;
   padding: 0 1em;
   font-size: 1.8rem;
-  font-weight: 300;
+  font-weight: 400;
   color: #FFF;
   text-decoration: none;
 }
 
-  .nav-link.active { border-bottom: 5px solid #33C3F0; }
+  .nav-link.active { border-left: 5px solid #33C3F0; }
 
-  .nav-link:hover {
+  .nav-link:hover,
+  .nav-link:active {
     color: #FFF;
-    background: #444;
     text-decoration: none;
+
+    -webkit-backdrop-filter: blur(5px);
+    -moz-backdrop-filter: blur(5px);
+    -ms-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background: rgba(34, 34, 34, 0.5);
   }
 
+@media screen and (min-width: 750px) {
+  .menu-btn { display: none; }
+
+  nav {
+    position: static;
+    width: auto;
+    height: 60px;
+    background: none;
+  }
+
+  .nav-link {
+    display: inline-block;
+    float: left;
+    border-left: 0; 
+  }
+
+    .nav-link.active {
+      border-left: 0; 
+      border-bottom: 5px solid #33C3F0;
+    }
+
+    .nav-link:hover,
+    .nav-link:active {
+      -webkit-backdrop-filter: none;
+      -moz-backdrop-filter: none;
+      -ms-backdrop-filter: none;
+      backdrop-filter: none;
+      background: #444;
+    }
+
+}
 
 /* Getting Started
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
