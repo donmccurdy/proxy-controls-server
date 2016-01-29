@@ -213,6 +213,7 @@ footer {
 
 .footer-link {
   display: block;
+  line-height: 2em;
 }
 
 .footer-desc p:last-child { margin-bottom: 0; }
@@ -221,6 +222,10 @@ footer {
   .footer-links {
     margin-bottom: 0;
     text-align: left;
+  }
+
+  .footer-link {
+    line-height: 1em;
   }
 }
 
