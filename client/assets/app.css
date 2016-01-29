@@ -104,6 +104,8 @@ header > .container {
   padding: 0 30px;
 }
 
+  .menu-btn:active { background: #444; }
+
 .menu-btn:before {
   content: "";
   position: absolute;
@@ -220,12 +222,13 @@ footer {
 
 @media screen and (min-width: 550px) {
   .footer-links {
+    margin-top: 0.2em;
     margin-bottom: 0;
     text-align: left;
   }
 
   .footer-link {
-    line-height: 1em;
+    line-height: 1.2em;
   }
 }
 
