@@ -65,6 +65,10 @@ ProxyControlsClient.prototype.initConnection = function () {
   peer.on('data', function (data) {
     console.log('data(%s)', JSON.stringify(data, null, 2));
   });
+  peer.on('disconnect', function () {
+    this.listeners.forEach(function (listener) { listener.unbind(); });
+    console.info('disconnect()');
+  }.bind(this));
   peer.on('close', function () {
     this.listeners.forEach(function (listener) { listener.unbind(); });
     console.info('close()');
@@ -101,18 +105,28 @@ ProxyControlsClient.prototype.initListeners = function () {
   });
 };
 
+/**
+ * Removes all event bindings and destroys dependencies.
+ */
+ProxyControlsClient.prototype.destroy = function () {
+  this.listeners.forEach(function (listener) {
+    listener.destroy();
+  });
+  this.peer.close();
+};
+
 ProxyControlsClient.prototype.isServerConnected = function () {
   return this.peer.socket.readyState === WebSocket.OPEN;
 };
 
 ProxyControlsClient.prototype.isPeerConnected = function () {
-  return this.peer.rtcConnected || this.peer.socketConnected;
+  return this.peer.peerConnected;
 };
 
 ProxyControlsClient.prototype.getPeerProtocol = function () {
   if (this.peer.rtcConnected) {
     return 'rtc';
-  } else if (this.peer.socketConnected) {
+  } else if (this.peer.socketConnected && this.peer.peerConnected) {
     return 'socket';
   }
   return null;

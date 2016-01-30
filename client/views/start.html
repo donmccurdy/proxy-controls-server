@@ -6,23 +6,35 @@
 
   <!-- Introduction
   ––––––––––––––––––––– -->
-  <div ng-if="!server.connected">
-    <h2>Pairing</h2>
-    <p>Look for your pair code on the remote device, then enter it here to connect.</p>
-    <div class="row">
-      <div class="eight columns">
-        <input type="text"
-               placeholder="pair-code"
-               class="u-full-width"
-               ng-model="pairCode"
-               ng-pattern="/^[a-zA-Z]+\-[a-zA-Z]+$/"
-               ng-keyup="$event.keyCode == 13 && connect(pairCode)">
-      </div>
-      <div class="four columns">
-        <button class="button button-primary u-full-width"
-                ng-click="connect(pairCode)">Connect</button>
-      </div>
+  <h2>Pairing</h2>
+  <p ng-if="!server.connected">Look for your pair code on the remote device, then enter it here to connect.</p>
+  <div class="row" ng-if="!server.connected">
+    <div class="eight columns">
+      <input type="text"
+             placeholder="pair-code"
+             class="u-full-width"
+             ng-model="pairCode"
+             ng-pattern="/^[a-zA-Z0-9_]+\-[a-zA-Z0-9_]+$/"
+             ng-keyup="$event.keyCode == 13 && connect(pairCode)">
     </div>
+    <div class="four columns">
+      <button class="button button-primary u-full-width"
+              ng-click="connect(pairCode)">Connect</button>
+    </div>
+  </div>
+  <div class="status status-pending" ng-if="server.connected && !peer.connected">
+    <h4>Waiting...</h4>
+    <div>
+      Waiting for remote device to connect with code '<span>{{ pairCode }}</span>'.
+    </div>
+  </div>
+  <div class="status status-connected u-cf" ng-if="server.connected && peer.connected">
+    <h4>Connected.</h4>
+    <div>
+      Okay, the input devices(s) selected below are now connected to your remote device. Have fun.
+    </div>
+    <!-- TODO: Disconnect button doesn't work reliably yet. -->
+    <!-- <button class="button u-pull-right" ng-click="disconnect()">Disconnect</button> -->
   </div>
 
   <!-- Status

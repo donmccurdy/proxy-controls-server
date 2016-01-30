@@ -30,9 +30,13 @@ Listener.prototype.unbind = function () {
   for (var event in this.__listeners) {
     if (this.__listeners.hasOwnProperty(event)) {
       document.removeEventListener(event, this.__listeners[event]);
+      delete this.__listeners[event];
     }
   }
-  this.__listeners = {};
+};
+
+Listener.prototype.destroy = function () {
+  this.unbind();
 };
 
 Listener.prototype.isEnabled = function () {

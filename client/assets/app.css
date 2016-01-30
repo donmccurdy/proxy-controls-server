@@ -238,6 +238,26 @@ footer {
 input.ng-invalid,
 input.ng-invalid:focus { border-color: #ED143D; }
 
+.status {
+  color: #FFF;
+  border-radius: 4px;
+  padding: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+  .status.status-pending { background: #DAA520; }
+  .status.status-connected { background: #33C3F0; }
+
+
+.status .button {
+  color: #fff;
+  background: rgba(255,255,255,0.2);
+  border: 0;
+  margin: 0;
+}
+
+  .status .button:hover { background: #ED143D; }
+
 /* Modules
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
