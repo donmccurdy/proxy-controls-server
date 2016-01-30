@@ -10,7 +10,7 @@ angular.module('proxyControlsApp', [
   })
   .config(function($routeProvider) {
     $routeProvider
-      .when('/', {templateUrl: 'views/main.html'})
+      .when('/', {templateUrl: 'views/home.html'})
       .when('/docs', {templateUrl: 'views/docs.html'})
       .when('/start', {
         templateUrl: 'views/start.html',

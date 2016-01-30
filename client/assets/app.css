@@ -6,35 +6,27 @@
 
 body {
   min-height: 100vh;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: flex;
-  -webkit-flex-direction: column;
-  -moz-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  overflow-y: scroll;
-}
 
-.view-wrap {
- -webkit-flex-grow: 1;
- -moz-flex-grow: 1;
- -ms-flex-grow: 1;
- flex-grow: 1;
+
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding-top: 60px;
 }
 
 .container {
   max-width: 850px; 
 }
 
-body > .container { margin-top: calc(60px + 2rem) }
-@media screen and (min-width: 750px) {
-  body > .container { margin-top: calc(60px + 4rem); }
+.view {
+  padding-top: 2rem;
 }
 
 section:not(:last-child) {
   margin-bottom: 6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .view { padding-top: 4rem; }
 }
 
 /* Typography
@@ -52,6 +44,37 @@ a { text-decoration: none; }
   a:hover { text-decoration: underline; }
 
 .caps { font-size: 1.5rem; font-weight: 400; }
+
+/* Flexbox
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.flex {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: flex;
+}
+
+.flex-column {
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.flex-grow {
+  -webkit-flex-grow: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-grow: 1;
+  flex-grow: 1;
+}
+
+.flex-center {
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
 
 /* Header
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -230,6 +253,32 @@ footer {
   .footer-link {
     line-height: 1.2em;
   }
+}
+
+/* Home
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.home-view {
+  padding: 2rem;
+  text-align: center;
+}
+
+.home-title {
+  font-size: 4rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.home-subtitle {
+  font-size: 2.4rem;
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+  text-align: left;
+}
+
+@media screen and (min-width: 550px) {
+  .home-title { font-size: 5rem; }
+  .home-subtitle { font-size: 3rem; text-align: center; }
 }
 
 /* Getting Started
