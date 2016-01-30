@@ -273,6 +273,7 @@ footer a.attrib {
   font-size: 4rem;
   font-weight: 300;
   text-align: center;
+  text-shadow: 1px 1px 1px #000;
 }
 
 .home-subtitle {
