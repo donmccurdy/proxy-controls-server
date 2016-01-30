@@ -12,8 +12,10 @@ var INTERVAL = 1000,
       }
     };
 
-module.exports = function ($scope, $route, $interval, ProxyService) {
+module.exports = function ($scope, $route, $interval, ProxyService, RESOURCES) {
   var proxyService = null;
+
+  $scope.demoUrl = RESOURCES.DEMO_URL;
 
   angular.merge($scope, angular.copy(DEFAULT_SCOPE));
 

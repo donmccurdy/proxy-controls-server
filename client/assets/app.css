@@ -298,8 +298,45 @@ footer a.attrib {
 /* Getting Started
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+/* Device notice */
+
+.device-notice {
+  border-left: 5px solid #DAA520;
+  padding-left: 1em;
+}
+
+i.alert {
+  display: inline-block;
+  position: relative;
+  top: 0.1em;
+  margin-right: 0.2em;
+  margin-top: -0.5em;
+
+  border: 0.6em solid transparent;
+  border-bottom: 1em solid #DAA520;
+}
+
+i.alert:after {
+  position: absolute;
+  left: -0.1em;
+  top: 0.1em;
+
+  font-style: normal;
+  font-size: 0.8em;
+  content: "!";
+  color: #FFF;
+}
+
+@media screen and (min-width: 550px) {
+  .device-notice { display: none; }
+}
+
+/* Pair code input */
+
 input.ng-invalid,
 input.ng-invalid:focus { border-color: #ED143D; }
+
+/* Connection status */
 
 .status {
   color: #FFF;
