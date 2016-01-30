@@ -1,94 +1,96 @@
 <div class="view flex-grow">
+  <div class="container">
 
-  <h1>Docs</h1>
+    <h1>Docs</h1>
 
-  <section>
-    <h2>Overview</h2>
+    <section>
+      <h2>Overview</h2>
 
-    <p>
-      ProxyControls shares events from input devices (keyboard, gamepad, etc.)
-      with a remote device. While viewing a WebVR site on your phone with Google
-      Cardboard, you can use a USB gamepad &mdash; connected to your PC &mdash; to
-      move around.
-    </p>
+      <p>
+        ProxyControls shares events from input devices (keyboard, gamepad, etc.)
+        with a remote device. While viewing a WebVR site on your phone with Google
+        Cardboard, you can use a USB gamepad &mdash; connected to your PC &mdash; to
+        move around.
+      </p>
 
-    <p>
-      This project works great with Mozilla’s new WebVR library, <a target="_blank" href="https://aframe.io/">A-Frame</a>.
-    </p>
+      <p>
+        This project works great with Mozilla’s new WebVR library, <a target="_blank" href="https://aframe.io/">A-Frame</a>.
+      </p>
 
-  </section>
+    </section>
 
-  <section>
-    <h2>Host Device</h2>
+    <section>
+      <h2>Host Device</h2>
 
-    <p>
-      For your host (the machine connected directly to the input device), this
-      website is all you need:
-    </p>
+      <p>
+        For your host (the machine connected directly to the input device), this
+        website is all you need:
+      </p>
 
-    <p>› <a href="/#/connect">Connect as host (desktop)</a></p>
-  </section>
+      <p>› <a href="/#/connect">Connect as host (desktop)</a></p>
+    </section>
 
-  <section>
-    <h2>Remote Device + <a target="_blank" href="https://aframe.io/">A-Frame</a> VR</h2>
+    <section>
+      <h2>Remote Device + <a target="_blank" href="https://aframe.io/">A-Frame</a> VR</h2>
 
-    <p>Example:</p>
+      <p>Example:</p>
 
-    <pre><code>&lt;a-scene <b>proxy-controls</b>&gt;
-  &lt;a-cube&gt;&lt;/a-cube&gt;
-  &lt;a-entity camera
-            <b>gamepad-controls</b>
-            <b>keyboard-controls</b>&gt;
-  &lt;/a-entity&gt;
-&lt;/a-scene&gt;
-</code></pre>
+      <pre><code>&lt;a-scene <b>proxy-controls</b>&gt;
+    &lt;a-cube&gt;&lt;/a-cube&gt;
+    &lt;a-entity camera
+              <b>gamepad-controls</b>
+              <b>keyboard-controls</b>&gt;
+    &lt;/a-entity&gt;
+  &lt;/a-scene&gt;
+  </code></pre>
 
-    <p>
-      For your remote device (e.g. phone) use a <code>proxy-controls</code>
-      component to receive input events:
-    </p>
+      <p>
+        For your remote device (e.g. phone) use a <code>proxy-controls</code>
+        component to receive input events:
+      </p>
 
-    <ul>
-      <li>
-        <a href="https://github.com/donmccurdy/aframe-proxy-controls">A-Frame Proxy Controls Component</a>
-        <code>proxy-controls</code>
-      </li>
-    </ul>
+      <ul>
+        <li>
+          <a href="https://github.com/donmccurdy/aframe-proxy-controls">A-Frame Proxy Controls Component</a>
+          <code>proxy-controls</code>
+        </li>
+      </ul>
 
-    <p>
-      In addition to receiving events from the host, you’ll need a controls
-      component to <i>apply</i> those events and manipulate the scene. There are
-      a few official client packages, designed for A-Frame:
-    </p>
+      <p>
+        In addition to receiving events from the host, you’ll need a controls
+        component to <i>apply</i> those events and manipulate the scene. There are
+        a few official client packages, designed for A-Frame:
+      </p>
 
-    <ul>
-      <li>
-        <a href="https://github.com/donmccurdy/aframe-keyboard-controls">A-Frame Keyboard Controls</a>
-        <code>keyboard-controls</code>
-      </li>
-      <li>
-        <a href="https://github.com/donmccurdy/aframe-gamepad-controls">A-Frame Gamepad Controls</a>
-        <code>gamepad-controls</code>
-      </li>
-      <li>
-        <i>(Coming soon)</i>
-        A-Frame Leap Motion Controls
-        <code>leap-controls</code>
-      </li>
-      <li>&hellip;or build your own!</li>
-    </ul>
+      <ul>
+        <li>
+          <a href="https://github.com/donmccurdy/aframe-keyboard-controls">A-Frame Keyboard Controls</a>
+          <code>keyboard-controls</code>
+        </li>
+        <li>
+          <a href="https://github.com/donmccurdy/aframe-gamepad-controls">A-Frame Gamepad Controls</a>
+          <code>gamepad-controls</code>
+        </li>
+        <li>
+          <i>(Coming soon)</i>
+          A-Frame Leap Motion Controls
+          <code>leap-controls</code>
+        </li>
+        <li>&hellip;or build your own!</li>
+      </ul>
 
-  </section>
+    </section>
 
-  <section>
-    <h2>Remote Device, without A-Frame</h2>
+    <section>
+      <h2>Remote Device, without A-Frame</h2>
 
-    <p>
-      There’s no official pre-packaged support for ProxyControls outside of the
-      A-Frame environment yet. Feel free to build your own, or
-      <a href="https://github.com/donmccurdy/proxy-controls-server/issues/new">open an issue on GitHub</a>
-      if you’re interested in discussing an idea.
-    </p>
-  </section>
+      <p>
+        There’s no official pre-packaged support for ProxyControls outside of the
+        A-Frame environment yet. Feel free to build your own, or
+        <a href="https://github.com/donmccurdy/proxy-controls-server/issues/new">open an issue on GitHub</a>
+        if you’re interested in discussing an idea.
+      </p>
+    </section>
 
-</p>
+  </div>
+</div>

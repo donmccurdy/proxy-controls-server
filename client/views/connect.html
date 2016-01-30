@@ -1,100 +1,102 @@
 <div class="view flex-grow">
+  <div class="container">
 
-  <h1>Get Started</h1>
+    <h1>Get Started</h1>
 
-  <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
+    <p>With this tab in focus, keyboard and gamepad events can be sent to a remote client.</p>
 
-  <!-- Introduction
-  ––––––––––––––––––––– -->
-  <h2>Pairing</h2>
-  <p ng-if="!server.connected">Look for your pair code on the remote device, then enter it here to connect.</p>
-  <div class="row" ng-if="!server.connected">
-    <div class="eight columns">
-      <input type="text"
-             placeholder="pair-code"
-             class="u-full-width"
-             ng-model="pairCode"
-             ng-pattern="/^[a-zA-Z0-9_]+\-[a-zA-Z0-9_]+$/"
-             ng-keyup="$event.keyCode == 13 && connect(pairCode)">
+    <!-- Introduction
+    ––––––––––––––––––––– -->
+    <h2>Pairing</h2>
+    <p ng-if="!server.connected">Look for your pair code on the remote device, then enter it here to connect.</p>
+    <div class="row" ng-if="!server.connected">
+      <div class="eight columns">
+        <input type="text"
+               placeholder="pair-code"
+               class="u-full-width"
+               ng-model="pairCode"
+               ng-pattern="/^[a-zA-Z0-9_]+\-[a-zA-Z0-9_]+$/"
+               ng-keyup="$event.keyCode == 13 && connect(pairCode)">
+      </div>
+      <div class="four columns">
+        <button class="button button-primary u-full-width"
+                ng-click="connect(pairCode)">Connect</button>
+      </div>
     </div>
-    <div class="four columns">
-      <button class="button button-primary u-full-width"
-              ng-click="connect(pairCode)">Connect</button>
+    <div class="status status-pending" ng-if="server.connected && !peer.connected">
+      <h4>Waiting...</h4>
+      <div>
+        Waiting for remote device to connect with code “<span>{{ pairCode }}</span>”.
+      </div>
     </div>
+    <div class="status status-connected u-cf" ng-if="server.connected && peer.connected">
+      <h4>Connected.</h4>
+      <div>
+        Okay, the input devices(s) selected below are now connected to your remote device. Have fun.
+      </div>
+      <!-- TODO: Disconnect button doesn't work reliably yet. -->
+      <!-- <button class="button u-pull-right" ng-click="disconnect()">Disconnect</button> -->
+    </div>
+
+    <!-- Status
+    ––––––––––––––––––––– -->
+    <h2>Connection</h2>
+    <div class="row">
+      <div class="module u-full-width" style="max-width: 550px;">
+        <table class="u-full-width">
+          <tbody>
+            <tr>
+              <td>Server Status</td>
+              <td>
+                <span class="toggle" ng-class="{green: server.connected, red: !server.connected}">
+                  {{ server.connected ? 'Connected' : 'Disconnected' }}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Remote Device</td>
+              <td>
+                <span class="toggle" ng-class="{green: peer.connected, red: !peer.connected}">
+                  {{ peer.connected ? 'Connected' : 'Disconnected' }}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Protocol</td>
+              <td>
+                <span class="toggle" ng-class="{green: peer.protocol === 'rtc',
+                                                yellow: peer.protocol === 'socket',
+                                                red: !peer.protocol}">
+                  {{ peer.protocol ? protocolLabels[peer.protocol] : 'Disconnected' }}
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Latency</td>
+              <td>{{ peer.latency || '∞' }}ms</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Listeners
+    ––––––––––––––––––––– -->
+    <div class="row" ng-if="listeners.length">
+      <h2>Input Devices</h2>
+      <div class="module" ng-repeat="listener in listeners">
+        <button class="button u-pull-right"
+                ng-class="{ 'button-primary': !listener.isEnabled() }"
+                ng-click="listener.setEnabled(!listener.isEnabled())">
+          {{ listener.isEnabled() ? 'Disable' : 'Enable' }}
+        </button>
+        <h5>{{ listener.title }}</h5>
+        <ul>
+          <li>A-Frame component: <a href="{{ listener.github }}" target="_blank">{{ listener.component }}</a></li>
+          <li>Event type: <code>{{ listener.type }}</code></li>
+        </ul>
+      </div>
+    </div>
+
   </div>
-  <div class="status status-pending" ng-if="server.connected && !peer.connected">
-    <h4>Waiting...</h4>
-    <div>
-      Waiting for remote device to connect with code “<span>{{ pairCode }}</span>”.
-    </div>
-  </div>
-  <div class="status status-connected u-cf" ng-if="server.connected && peer.connected">
-    <h4>Connected.</h4>
-    <div>
-      Okay, the input devices(s) selected below are now connected to your remote device. Have fun.
-    </div>
-    <!-- TODO: Disconnect button doesn't work reliably yet. -->
-    <!-- <button class="button u-pull-right" ng-click="disconnect()">Disconnect</button> -->
-  </div>
-
-  <!-- Status
-  ––––––––––––––––––––– -->
-  <h2>Connection</h2>
-  <div class="row">
-    <div class="module u-full-width" style="max-width: 550px;">
-      <table class="u-full-width">
-        <tbody>
-          <tr>
-            <td>Server Status</td>
-            <td>
-              <span class="toggle" ng-class="{green: server.connected, red: !server.connected}">
-                {{ server.connected ? 'Connected' : 'Disconnected' }}
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>Remote Device</td>
-            <td>
-              <span class="toggle" ng-class="{green: peer.connected, red: !peer.connected}">
-                {{ peer.connected ? 'Connected' : 'Disconnected' }}
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>Protocol</td>
-            <td>
-              <span class="toggle" ng-class="{green: peer.protocol === 'rtc',
-                                              yellow: peer.protocol === 'socket',
-                                              red: !peer.protocol}">
-                {{ peer.protocol ? protocolLabels[peer.protocol] : 'Disconnected' }}
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td>Latency</td>
-            <td>{{ peer.latency || '∞' }}ms</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Listeners
-  ––––––––––––––––––––– -->
-  <div class="row" ng-if="listeners.length">
-    <h2>Input Devices</h2>
-    <div class="module" ng-repeat="listener in listeners">
-      <button class="button u-pull-right"
-              ng-class="{ 'button-primary': !listener.isEnabled() }"
-              ng-click="listener.setEnabled(!listener.isEnabled())">
-        {{ listener.isEnabled() ? 'Disable' : 'Enable' }}
-      </button>
-      <h5>{{ listener.title }}</h5>
-      <ul>
-        <li>A-Frame component: <a href="{{ listener.github }}" target="_blank">{{ listener.component }}</a></li>
-        <li>Event type: <code>{{ listener.type }}</code></li>
-      </ul>
-    </div>
-  </div>
-
 </div>

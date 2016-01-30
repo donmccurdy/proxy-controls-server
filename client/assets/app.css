@@ -243,6 +243,10 @@ footer {
 
 .footer-desc p:last-child { margin-bottom: 0; }
 
+footer a.attrib {
+  color: inherit;
+}
+
 @media screen and (min-width: 550px) {
   .footer-links {
     margin-top: 0.2em;
@@ -259,6 +263,8 @@ footer {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .home-view {
+  color: #FFF;
+  background: url("footer_lodyas.png");
   padding: 2rem;
   text-align: center;
 }
@@ -271,14 +277,17 @@ footer {
 
 .home-subtitle {
   font-size: 2.4rem;
-  max-width: 500px;
+  max-width: 600px;
   margin: 0 auto 2rem auto;
-  text-align: left;
+}
+
+.home-view .button {
+  color: #FFF;
 }
 
 @media screen and (min-width: 550px) {
   .home-title { font-size: 5rem; }
-  .home-subtitle { font-size: 3rem; text-align: center; }
+  .home-subtitle { font-size: 3rem; }
 }
 
 /* Getting Started
