@@ -4,8 +4,8 @@ var SocketPeer = require('socketpeer'),
     KeyboardListener = require('./keyboard-listener'),
     GamepadListener = require('./gamepad-listener');
 
-var LATENCY_POLLING_BUFFER_SIZE = 5,
-    LATENCY_POLLING_INTERVAL = 1000;
+var LATENCY_POLLING_BUFFER_SIZE = 50,
+    LATENCY_POLLING_INTERVAL = 20;
 
 /**
  * UI controller for client running on host machine. Records user input and
@@ -62,8 +62,10 @@ ProxyControlsClient.prototype.initConnection = function () {
   peer.on('connect_timeout', function () { console.warn('connect_timeout()'); });
   peer.on('upgrade', function () { console.info('upgrade()'); });
   peer.on('error', function () { console.error('error()'); });
-  peer.on('data', function (data) {
-    console.log('data(%s)', JSON.stringify(data, null, 2));
+  peer.on('data', function (event) {
+    if (event.type !== 'ping') {
+      console.log('data(%s)', JSON.stringify(event, null, 2));
+    }
   });
   peer.on('disconnect', function () {
     this.listeners.forEach(function (listener) { listener.unbind(); });
