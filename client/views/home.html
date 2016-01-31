@@ -12,8 +12,8 @@
     </h3>
 
     <div class="home-links">
-      <a class="button button-primary" href="/#/connect">Connect as host (desktop)</a>
-      <a class="button" href="{{ demoUrl }}">Demo as viewer (mobile)</a>
+      <a class="button" ng-class="{'button-primary': !isMobile}" href="/#/connect">Connect as host (desktop)</a>
+      <a class="button" ng-class="{'button-primary': isMobile}" href="{{ demoUrl }}">Demo as viewer (mobile)</a>
     </div>
 
   </div>
