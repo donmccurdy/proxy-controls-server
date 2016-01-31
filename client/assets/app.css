@@ -21,7 +21,7 @@ body {
   padding-top: 2rem;
 }
 
-section:not(:last-child) {
+section {
   margin-bottom: 6rem;
 }
 
