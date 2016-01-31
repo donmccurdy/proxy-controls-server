@@ -395,3 +395,10 @@ input.ng-invalid:focus { border-color: #ED143D; }
   .toggle.green  { background: #008000; }
   .toggle.yellow { background: #DAA520; }
   .toggle.red    { background: #ED143D; }
+
+/* Docs
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.docs-view hr {
+  margin: 6rem 0;
+}
