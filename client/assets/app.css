@@ -142,7 +142,7 @@ header > .container {
     0 0.7em 0 0 #F0F0F0;
 }
 
-nav {
+header nav {
   position: absolute;
   top: 60px;
   right: -250px;

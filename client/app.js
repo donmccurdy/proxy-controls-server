@@ -15,7 +15,10 @@ angular.module('proxyControlsApp', [
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       })
-      .when('/docs', {templateUrl: 'views/docs.html'})
+      .when('/docs', {
+        templateUrl: 'views/docs.html',
+        controller: 'DocsCtrl'
+      })
       .when('/connect', {
         templateUrl: 'views/connect.html',
         controller: 'ConnectCtrl'

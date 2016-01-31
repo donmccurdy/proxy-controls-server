@@ -3,7 +3,15 @@
 
     <h1>Docs</h1>
 
-    <section>
+    <ul>
+      <li><a href="/#/docs#overview" ng-click="goHash('overview')">Overview</a></li>
+      <li><a href="/#/docs#host-device" ng-click="goHash('host-device')">Host Device</a></li>
+      <li><a href="/#/docs#remote-device" ng-click="goHash('remote-device')">Remote Device + A-Frame VR</a></li>
+      <li><a href="/#/docs#remote-device-without-aframe" ng-click="goHash('remote-device-without-aframe')">Remote Device, without A-Frame</a></li>
+      <li><a href="/#/docs#webrtc" ng-click="goHash('webrtc')">WebRTC + Browser Compatibility</a></li>
+    </ul>
+
+    <section id="overview">
       <h2>Overview</h2>
 
       <p>
@@ -19,7 +27,7 @@
 
     </section>
 
-    <section>
+    <section id="host-device">
       <h2>Host Device</h2>
 
       <p>
@@ -30,19 +38,19 @@
       <p>› <a href="/#/connect">Connect as host (desktop)</a></p>
     </section>
 
-    <section>
+    <section id="remote-device">
       <h2>Remote Device + <a target="_blank" href="https://aframe.io/">A-Frame</a> VR</h2>
 
       <p>Example:</p>
 
       <pre><code>&lt;a-scene <b>proxy-controls</b>&gt;
-    &lt;a-cube&gt;&lt;/a-cube&gt;
-    &lt;a-entity camera
-              <b>gamepad-controls</b>
-              <b>keyboard-controls</b>&gt;
-    &lt;/a-entity&gt;
-  &lt;/a-scene&gt;
-  </code></pre>
+  &lt;a-cube&gt;&lt;/a-cube&gt;
+  &lt;a-entity camera
+            <b>gamepad-controls</b>
+            <b>keyboard-controls</b>&gt;
+  &lt;/a-entity&gt;
+&lt;/a-scene&gt;
+</code></pre>
 
       <p>
         For your remote device (e.g. phone) use a <code>proxy-controls</code>
@@ -81,7 +89,7 @@
 
     </section>
 
-    <section>
+    <section id="remote-device-without-aframe">
       <h2>Remote Device, without A-Frame</h2>
 
       <p>
@@ -90,6 +98,33 @@
         <a href="https://github.com/donmccurdy/proxy-controls-server/issues/new">open an issue on GitHub</a>
         if you’re interested in discussing an idea.
       </p>
+    </section>
+
+    <section id="webrtc">
+      <h2>WebRTC + Browser Compatibility</h2>
+
+      <p>
+        ProxyControls uses WebRTC's peer-to-peer DataChannel API to reduce
+        connection latency. The WebRTC spec is not finalized, and
+        <a href="http://caniuse.com/#search=webrtc" target="_blank">not yet
+        supported in all browsers</a>. When WebRTC is not available, ProxyControls
+        will automatically switch to WebSockets.
+      </p>
+
+      <table>
+        <thead>
+          <tr><th>Browser</th><th>Status (Jan. 2016)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Chrome</td><td><span class="toggle green">WebRTC + WebSockets</span></td></tr>
+          <tr><td>Firefox</td><td><span class="toggle green">WebRTC + WebSockets</span></td></tr>
+          <tr><td>Opera</td><td><span class="toggle green">WebRTC + WebSockets</span></td></tr>
+          <tr><td>iOS / Safari</td><td><span class="toggle yellow">WebSockets</span></td></tr>
+          <tr><td>Edge</td><td><span class="toggle yellow">WebSockets</span></td></tr>
+          <tr><td>IE 11</td><td><span class="toggle yellow">WebSockets</span></td></tr>
+        </tbody>
+      </table>
+
     </section>
 
   </div>
