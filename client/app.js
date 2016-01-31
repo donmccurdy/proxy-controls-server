@@ -6,7 +6,7 @@ angular.module('proxyControlsApp', [
     require('angular-touch')
   ])
   .constant('RESOURCES', {
-    DEMO_URL: 'https://www.donmccurdy.com/aframe-proxy-controls',
+    DEMO_URL: '/demo',
     SOCKET_PATH: location.protocol + '//' + location.host + '/socketpeer/'
   })
   .config(function($routeProvider) {
