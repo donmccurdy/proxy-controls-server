@@ -4,10 +4,13 @@
 /* Page layout
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+html {
+  background: #222;
+}
+
 body {
+  background: #FFF;
   min-height: 100vh;
-
-
   overflow-y: scroll;
   box-sizing: border-box;
   padding-top: 60px;
@@ -262,9 +265,10 @@ footer a.attrib {
 /* Home
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+body.bg-dark { background: url("footer_lodyas.png"); }
+
 .home-view {
   color: #FFF;
-  background: url("footer_lodyas.png");
   padding: 2rem;
   text-align: center;
 }
