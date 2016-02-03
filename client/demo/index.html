@@ -6,12 +6,12 @@
     <script src="https://aframe.io/releases/latest/aframe.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-gamepad-controls/v0.3.2/dist/aframe-gamepad-controls.js"></script>
     <script src="https://cdn.rawgit.com/donmccurdy/aframe-keyboard-controls/v0.1.5/dist/aframe-keyboard-controls.js"></script>
-    <script src="https://cdn.rawgit.com/donmccurdy/aframe-proxy-controls/v0.5.2/dist/aframe-proxy-controls.min.js"></script>
+    <script src="https://cdn.rawgit.com/donmccurdy/aframe-proxy-controls/v0.5.3/dist/aframe-proxy-controls.min.js"></script>
     <style>
       .intro-overlay {
         z-index: 1;
         position: absolute;
-        top: 80px;
+        top: 20px;
         left: 20px;
         max-width: 280px;
         box-sizing: border-box;
@@ -36,7 +36,7 @@
         .intro-overlay-link:hover { background: #444; }
 
       @media screen and (min-width: 550px) {
-        .intro-overlay { top: 20px; }
+        .intro-overlay { max-width: 450px; }
       }
 
     </style>
@@ -85,20 +85,24 @@
 
     </a-scene>
 
-    <div class="intro-overlay">
-      Move around with WASD keys, ←↑→↓, or a USB gamepad.
+    <div class="intro-overlay" style="display: none;">
+      <p>Move around with WASD keys, ←↑→↓, or a USB gamepad.</p>
+      <p>Pair code: “<span data-bind="pairCode"></span>”</p>
       <div><a href="javascript:void(0)" class="intro-overlay-link">Got it!</a></div>
     </div>
 
     <script>
       var scene = document.querySelector('a-scene'),
           proxyUrl = location.protocol + '//' + location.host;
-      scene.setAttribute('proxy-controls', 'proxyUrl:' + proxyUrl);
-
-      var overlay = document.querySelector('.intro-overlay'),
-          overlayLink = document.querySelector('.intro-overlay-link');
-      overlayLink.addEventListener('click', function () { overlay.remove(); });
-
+      scene.setAttribute('proxy-controls', {proxyUrl: proxyUrl, enableOverlay: false});
+      scene.addEventListener('proxycontrols.paircode', function (e) {
+        var pairCode = e.detail.pairCode,
+            overlay = document.querySelector('.intro-overlay'),
+            overlayLink = document.querySelector('.intro-overlay-link');
+        overlay.querySelector('[data-bind=pairCode]').textContent = pairCode;
+        overlay.style.display = '';
+        overlayLink.addEventListener('click', function () { overlay.remove(); });
+      });
     </script>
 
   </body>
