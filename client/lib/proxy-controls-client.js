@@ -39,7 +39,7 @@ var ProxyControlsClient = function (options) {
   this.peer = new SocketPeer({
     url: options.url,
     pairCode: options.pairCode,
-    socketFallback: true,
+    socketFallback: true
   });
 
   /** @type {string:Listener} Listeners bound to document events. */
