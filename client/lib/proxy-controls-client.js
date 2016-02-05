@@ -177,7 +177,6 @@ ProxyControlsClient.prototype.onDisconnect = function () {
 
 ProxyControlsClient.prototype.onData = function (event) {
   if (event.type === 'ping') {
-    console.log('PING');
     var protocol = this.getPeerProtocol();
     if (!protocol) return;
     this.pingList[this.pingListIndex] = (Date.now() - event.timestamp) / 2;
