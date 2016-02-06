@@ -38,18 +38,12 @@
     "url": "https://github.com/donmccurdy/proxy-controls-server/issues"
   },
   "homepage": "https://github.com/donmccurdy/proxy-controls-server#readme",
-  "devDependencies": {
-    "envify": "^3.4.0",
-    "nodemon": "^1.8.1",
-    "watchify": "^3.7.0"
-  },
   "dependencies": {
     "angular": "^1.4.8",
     "angular-route": "^1.4.8",
     "angular-sanitize": "^1.4.8",
     "angular-touch": "^1.4.8",
     "browserify": "^12.0.1",
-    "bufferutil": "^1.2.1",
     "dotenv": "^2.0.0",
     "keyboardevent-key-polyfill": "^1.0.1",
     "koa": "^1.1.2",
@@ -58,7 +52,15 @@
     "koa-route": "^2.4.2",
     "koa-static": "^2.0.0",
     "moniker": "^0.1.2",
-    "socketpeer": "donmccurdy/socketpeer#fork-master",
+    "socketpeer": "donmccurdy/socketpeer#fork-master"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^1.2.1",
     "utf-8-validate": "^1.2.1"
+  },
+  "devDependencies": {
+    "envify": "^3.4.0",
+    "nodemon": "^1.8.1",
+    "watchify": "^3.7.0"
   }
 }
