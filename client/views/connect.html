@@ -25,7 +25,7 @@
                placeholder="pair-code"
                class="u-full-width"
                ng-model="pairCode"
-               ng-pattern="/^[a-zA-Z0-9_]+\-[a-zA-Z0-9_]+$/"
+               ng-pattern="/^[a-zA-Z0-9_]+(\-[a-zA-Z0-9_]+)+$/"
                ng-keyup="$event.keyCode == 13 && connect(pairCode)">
       </div>
       <div class="four columns">
