@@ -1,7 +1,7 @@
 var Listener = require('./listener'),
     util = require('util');
 
-require('keyboardevent-key-polyfill').polyfill();
+require('./keyboard.polyfill');
 
 function KeyboardListener () {
   Listener.call(this);
@@ -27,14 +27,14 @@ KeyboardListener.prototype.bind = function () {
 };
 
 KeyboardListener.prototype.onKeydown = function (e) {
-  if (this.keys[e.key]) return;
-  this.keys[e.key] = true;
+  if (this.keys[e.code]) return;
+  this.keys[e.code] = true;
   this.emit(this.type, {type: this.type, state: this.keys});
 };
 
 KeyboardListener.prototype.onKeyup = function (e) {
-    if (!this.keys[e.key]) return;
-    delete this.keys[e.key];
+    if (!this.keys[e.code]) return;
+    delete this.keys[e.code];
     this.emit(this.type, {type: this.type, state: this.keys});
 };
 
