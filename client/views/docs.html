@@ -44,7 +44,60 @@
     <hr>
 
     <section id="remote-device">
-      <h2>Remote Device + <a target="_blank" href="https://aframe.io/">A-Frame</a> VR</h2>
+      <h2>Remote Device + A-Frame VR</h2>
+
+      <p>
+        For your remote device (e.g. phone) use a <code>proxy-controls</code>
+        component to receive input events:
+      </p>
+
+      <ul>
+        <li>
+          A-Frame
+          <a href="https://github.com/donmccurdy/aframe-proxy-controls">
+            proxy-controls
+            <img class="a-icon"
+                 src="/assets/GitHub-Mark-32px.png"
+                 srcset="/assets/GitHub-Mark-32px.png 1x,
+                         /assets/GitHub-Mark-64px.png 2x"
+                 alt="GitHub logo">
+          </a>
+        </li>
+      </ul>
+
+      <p>
+        You’ll also need an input device component to <i>apply</i>
+        those events and manipulate the scene. Here are a few client packages,
+        designed for A-Frame:
+      </p>
+
+      <ul>
+        <li>
+          A-Frame
+          <a href="https://github.com/donmccurdy/aframe-keyboard-controls">
+            keyboard-controls
+            <img class="a-icon"
+                 src="/assets/GitHub-Mark-32px.png"
+                 srcset="/assets/GitHub-Mark-32px.png 1x,
+                         /assets/GitHub-Mark-64px.png 2x"
+                 alt="GitHub logo">
+          </a>
+        </li>
+        <li>
+          A-Frame
+          <a href="https://github.com/donmccurdy/aframe-gamepad-controls">
+            gamepad-controls
+            <img class="a-icon"
+                 src="/assets/GitHub-Mark-32px.png"
+                 srcset="/assets/GitHub-Mark-32px.png 1x,
+                         /assets/GitHub-Mark-64px.png 2x"
+                 alt="GitHub logo">
+          </a>
+        </li>
+        <li>
+          A-Frame <span class="a-disabled">leap-motion-controls</span> <i>(Coming soon)</i>
+        </li>
+      </ul>
 
       <p>Example:</p>
 
@@ -56,41 +109,6 @@
   &lt;/a-entity&gt;
 &lt;/a-scene&gt;
 </code></pre>
-
-      <p>
-        For your remote device (e.g. phone) use a <code>proxy-controls</code>
-        component to receive input events:
-      </p>
-
-      <ul>
-        <li>
-          <a href="https://github.com/donmccurdy/aframe-proxy-controls">A-Frame Proxy Controls Component</a>
-          <code>proxy-controls</code>
-        </li>
-      </ul>
-
-      <p>
-        In addition to receiving events from the host, you’ll need a controls
-        component to <i>apply</i> those events and manipulate the scene. There are
-        a few official client packages, designed for A-Frame:
-      </p>
-
-      <ul>
-        <li>
-          <a href="https://github.com/donmccurdy/aframe-keyboard-controls">A-Frame Keyboard Controls</a>
-          <code>keyboard-controls</code>
-        </li>
-        <li>
-          <a href="https://github.com/donmccurdy/aframe-gamepad-controls">A-Frame Gamepad Controls</a>
-          <code>gamepad-controls</code>
-        </li>
-        <li>
-          <i>(Coming soon)</i>
-          A-Frame Leap Motion Controls
-          <code>leap-controls</code>
-        </li>
-        <li>&hellip;or build your own!</li>
-      </ul>
 
     </section>
 

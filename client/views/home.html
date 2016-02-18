@@ -1,6 +1,8 @@
-<div class="view home-view flex flex-column flex-center flex-grow">
-  <div class="container">
+<div class="view home-view flex flex-column flex-space-around flex-grow">
+  
+  <div class="container"><!-- Stub for spacing --></div>
 
+  <div class="container">
     <h1 class="home-title">
       <div>Mobile WebVR</div>
       <div><span style="position: relative;"><span style="position: absolute; left: -0.75em;">+</span>Interactivity</span></div>
@@ -15,6 +17,23 @@
       <a class="button" ng-class="{'button-primary': !isMobile}" href="/#/connect">Connect as host (desktop)</a>
       <a class="button" ng-class="{'button-primary': isMobile}" href="{{ demoUrl }}">Demo as viewer (mobile)</a>
     </div>
-
   </div>
+
+  <div class="container home-caption">
+    <p>
+      Developing with <a href="https://aframe.io/" target="_blank">A-Frame</a>?
+      Use the
+      <a class="a-with-icon" href="https://github.com/donmccurdy/aframe-proxy-controls" target="_blank">
+        proxy-controls&nbsp;<img class="a-icon"
+                                 src="/assets/GitHub-Mark-Light-32px.png"
+                                 srcset="/assets/GitHub-Mark-Light-32px.png 1x,
+                                         /assets/GitHub-Mark-Light-64px.png 2x"
+                                 alt="GitHub logo">
+      </a>
+      component in your scene. Your demo will use this site as the backend (it’s free), so
+      there’s no need to run your own server.
+      <a href="http://localhost:3000/#/docs#remote-device">Read more</a>.
+    </p>
+  </div>
+
 </div>

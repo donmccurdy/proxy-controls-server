@@ -47,6 +47,9 @@ a { text-decoration: none; }
   a:hover { text-decoration: underline; }
 
 .caps { font-size: 1.5rem; font-weight: 400; }
+.a-disabled { color: #888; }
+.a-icon { height: 2rem; vertical-align: text-top; }
+.a-with-icon { white-space: nowrap; }
 
 /* Flexbox
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -77,6 +80,13 @@ a { text-decoration: none; }
   -moz-justify-content: center;
   -ms-justify-content: center;
   justify-content: center;
+}
+
+.flex-space-around {
+  -webkit-justify-content: space-around;
+  -moz-justify-content: space-around;
+  -ms-justify-content: space-around;
+  justify-content: space-around;
 }
 
 /* Header
@@ -290,6 +300,11 @@ body.bg-dark { background: url("footer_lodyas.png"); }
   margin: 0 auto 2rem auto;
 }
 
+.home-caption {
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
 .home-view .button {
   color: #FFF;
 }
@@ -297,6 +312,7 @@ body.bg-dark { background: url("footer_lodyas.png"); }
 @media screen and (min-width: 550px) {
   .home-title { font-size: 5rem; }
   .home-subtitle { font-size: 3rem; }
+  .home-caption { text-align: center; }
 }
 
 /* Getting Started
