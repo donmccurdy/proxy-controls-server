@@ -21,7 +21,7 @@ var assert = require('assert'),
  */
 function ProxyControlsServer (options) {
   /** @type {Koa} Koa application, to serve client UI and AJAX endpoints. */
-  this.app = koa();
+  this.app = new koa();
 
   /** @type {http.Server} Server, to support both Koa and SocketPeerServer. */
   this.server = null;
@@ -29,7 +29,7 @@ function ProxyControlsServer (options) {
   if (options.sslPort) {
     assert(options.key, 'key required for SSL.');
     assert(options.cert, 'cert required for SSL.');
-    
+
     this.app.use(forceSSL());
     http.createServer(this.app.callback()).listen(options.port);
     this.server = https.createServer({
