@@ -1,7 +1,7 @@
 var assert = require('assert'),
     http = require('http'),
     https = require('https'),
-    koa = require('koa'),
+    Koa = require('koa'),
     cors = require('koa-cors'),
     route = require('koa-route'),
     resources = require('koa-static'),
@@ -21,7 +21,7 @@ var assert = require('assert'),
  */
 function ProxyControlsServer (options) {
   /** @type {Koa} Koa application, to serve client UI and AJAX endpoints. */
-  this.app = new koa();
+  this.app = new Koa();
 
   /** @type {http.Server} Server, to support both Koa and SocketPeerServer. */
   this.server = null;
