@@ -1,8 +1,5 @@
 node_modules/
 bower_components/
-**/bundle.js
-**/*.js.map
-**/*.js.gz
 .DS_Store
 .gh-pages
 .env
