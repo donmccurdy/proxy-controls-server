@@ -1,5 +1,8 @@
 # Proxy Controls Server
 
+![Status](https://img.shields.io/badge/status-experimental-orange.svg)
+[![License](https://img.shields.io/badge/license-MIT-007ec6.svg)](https://github.com/donmccurdy/proxy-controls-server/blob/master/LICENSE)
+
 Service to proxy keyboard/gamepad controls between devices, peer-to-peer, over WebRTC.
 
 See: [https://proxy-controls.donmccurdy.com](https://proxy-controls.donmccurdy.com).
