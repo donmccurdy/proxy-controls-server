@@ -5,8 +5,6 @@
 
 Service to proxy keyboard/gamepad controls between devices, peer-to-peer, over WebRTC.
 
-See: [https://proxy-controls.donmccurdy.com](https://proxy-controls.donmccurdy.com).
-
 ## Overview
 
 ```
